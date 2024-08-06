@@ -4,7 +4,7 @@ ___
 # English
 
 Send your requests here: https://raw.githubusercontent.com/robonamari/Good_Night-database/main/database.json
-- [ ] Picture and Video and Gif 
+- [ ] Picture and Video and Gif
 - [x] Text based Good Night
 
 ### Help
@@ -12,9 +12,9 @@ An exmaple to gather links with python:
 [Click Here](https://github.com/robonamari/Good_Night-database/blob/main/main.py)
 
 
-|Text  |
-|:----:|
-|20    |
+|Text ||Gif  |
+|:---:||:---:|
+|20   ||10   |
 
 
 
@@ -32,14 +32,14 @@ An exmaple to gather links with python:
 - [ ] عکس و ویدیو و گیف
 - [x] شب بخیر متنی
 
-### کمک 
+### کمک
 نمونه ای برای دریافت لینک ها به زبان پایتون:
 [کلیک](https://github.com/robonamari/meme-api/blob/main/main.py)
 
 
-|متن   |
-|:----:|
-|20    |
+|گیف||  متن  |
+|:---:||:---:|
+|20   ||10   |
 
 
 
