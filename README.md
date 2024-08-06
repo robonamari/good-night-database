@@ -12,9 +12,9 @@ An exmaple to gather links with python:
 [Click Here](https://github.com/robonamari/Good_Night-database/blob/main/main.py)
 
 
-|Text ||Gif  |
-|:---:||:---:|
-|20   ||10   |
+|Text |Gif  |
+|:---:|:---:|
+|20   |10   |
 
 
 
@@ -37,9 +37,9 @@ An exmaple to gather links with python:
 [کلیک](https://github.com/robonamari/meme-api/blob/main/main.py)
 
 
-|گیف||  متن  |
-|:---:||:---:|
-|20   ||10   |
+|گیف|  متن  |
+|:---:|:---:|
+|20   |10   |
 
 
 
