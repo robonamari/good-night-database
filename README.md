@@ -4,7 +4,9 @@ ___
 # English
 
 Send your requests here: https://good-night-database.robonamari.ir/database.json
-- [ ] Picture and Video and Gif
+- [ ] Picture
+- [ ] Video
+- [x] Gif
 - [x] Text based Good Night
 
 ### Help
@@ -29,7 +31,9 @@ An exmaple to gather links with python:
 
 # فارسی
 درخواست ها را به لینک رو به رو ارسال کنید: https://good-night-database.robonamari.ir/database.json
-- [ ] عکس و ویدیو و گیف
+- [ ] عکس
+- [ ] ویدیو
+- [ ] گیف
 - [x] شب بخیر متنی
 
 ### کمک
