@@ -33,7 +33,7 @@ An exmaple to gather links with python:
 درخواست ها را به لینک رو به رو ارسال کنید: https://good-night-database.robonamari.ir/database.json
 - [ ] عکس
 - [ ] ویدیو
-- [ ] گیف
+- [x] گیف
 - [x] شب بخیر متنی
 
 ### کمک
