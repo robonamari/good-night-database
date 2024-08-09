@@ -16,7 +16,7 @@ An exmaple to gather links with python:
 
 |Text |Gif  |
 |:---:|:---:|
-|20   |10   |
+|20   |19   |
 
 
 
@@ -43,7 +43,7 @@ An exmaple to gather links with python:
 
 |گیف|  متن  |
 |:---:|:---:|
-|20   |10   |
+|20   |19   |
 
 
 
