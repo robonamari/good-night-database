@@ -3,7 +3,7 @@ ___
 
 # English
 
-Send your requests here: https://good-night-database.robonamari.ir/database.json
+Send your requests here: https://good-night-database.robonamari.com/database.json
 - [ ] Picture
 - [ ] Video
 - [x] Gif
@@ -30,7 +30,7 @@ An exmaple to gather links with python:
 
 
 # فارسی
-درخواست ها را به لینک رو به رو ارسال کنید: https://good-night-database.robonamari.ir/database.json
+درخواست ها را به لینک رو به رو ارسال کنید: https://good-night-database.robonamari.com/database.json
 - [ ] عکس
 - [ ] ویدیو
 - [x] گیف
