@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/github/license/robonamari/Good_Night-database" alt="GitHub license">
 </p>
 
-___
+---
 
 # English
 
