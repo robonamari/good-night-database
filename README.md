@@ -1,4 +1,10 @@
-![Static Badge](https://img.shields.io/badge/python-%E2%88%9E-blue)
+<p align="center">
+    <img src="https://img.shields.io/github/languages/code-size/robonamari/Good_Night-database?style=flat" alt="Code Size">
+    <img src="https://tokei.rs/b1/github/robonamari/Good_Night-database?style=flat" alt="Total lines">
+    <img src="https://img.shields.io/badge/python-%5E3.7-blue" alt="Python Versions">
+    <img src="https://img.shields.io/github/license/robonamari/Good_Night-database" alt="GitHub license">
+</p>
+
 ___
 
 # English
