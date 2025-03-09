@@ -1,6 +1,6 @@
 <div align="center">
 
-[**🇮🇷 فارسی**](README_fa.md)
+[**🇺🇸 English**](README.md)
 </div>
 
 <p align="center">
@@ -12,25 +12,25 @@
 
 ---
 
-Send your requests here: https://good-night-database.robonamari.com/database.json
-- [ ] Picture
-- [ ] Video
-- [x] Gif
-- [x] Text based Good Night
+درخواست ها را به لینک رو به رو ارسال کنید: https://good-night-database.robonamari.com/database.json
+- [ ] عکس
+- [ ] ویدیو
+- [x] گیف
+- [x] شب بخیر متنی
 
-## Help
-An exmaple to gather links with python:
-[Click Here](https://github.com/robonamari/Good_Night-database/blob/main/main.py)
+## کمک
+نمونه ای برای دریافت لینک ها به زبان پایتون:
+[کلیک](https://github.com/robonamari/meme-api/blob/main/main.py)
 
 
-| Text | Gif |
+| گیف |  متن |
 | ---- | --- |
 | 20   | 32  |
 
 
-## Sources
-* [MoonFall Discord Server](https://discord.gg/BsaC3QgEQz)
+## منابع
+* [سرور سقوط ماه در دیسکورد](https://discord.gg/BsaC3QgEQz)
 
 
-## Contributors
+## همکاران
 [![contributors](https://contrib.rocks/image?repo=robonamari/Good_Night-database)](https://github.com/robonamari/Good_Night-database/graphs/contributors)
