@@ -12,20 +12,19 @@
 
 ---
 
-درخواست ها را به لینک رو به رو ارسال کنید: https://good-night-database.robonamari.com/database.json
+درخواست ها رو به لینک رو به رو ارسال کنید: https://good-night-database.robonamari.com/database.json
 - [ ] عکس
 - [ ] ویدیو
 - [x] گیف
 - [x] شب بخیر متنی
 
-## کمک
-نمونه ای برای دریافت لینک ها به زبان پایتون:
-[کلیک](https://github.com/robonamari/meme-api/blob/main/main.py)
-
-
 | گیف |  متن |
 | ---- | --- |
 | 20   | 32  |
+
+## کمک
+نمونه ای برای دریافت لینک ها به زبان پایتون:
+[کلیک](https://github.com/robonamari/meme-api/blob/main/main.py)
 
 
 ## منابع

@@ -18,14 +18,13 @@ Send your requests here: https://good-night-database.robonamari.com/database.jso
 - [x] Gif
 - [x] Text based Good Night
 
-## Help
-An exmaple to gather links with python:
-[Click Here](https://github.com/robonamari/Good_Night-database/blob/main/main.py)
-
-
 | Text | Gif |
 | ---- | --- |
 | 20   | 32  |
+
+## Help
+An exmaple to gather links with python:
+[Click Here](https://github.com/robonamari/Good_Night-database/blob/main/main.py)
 
 
 ## Sources
