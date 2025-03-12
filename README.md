@@ -26,10 +26,5 @@ Send your requests here: https://good-night-database.robonamari.com/database.jso
 An exmaple to gather links with python:
 [Click Here](https://github.com/robonamari/Good_Night-database/blob/main/main.py)
 
-
 ## Sources
 * [MoonFall Discord Server](https://discord.gg/BsaC3QgEQz)
-
-
-## Contributors
-[![contributors](https://contrib.rocks/image?repo=robonamari/Good_Night-database)](https://github.com/robonamari/Good_Night-database/graphs/contributors)
