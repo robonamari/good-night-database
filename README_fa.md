@@ -26,10 +26,6 @@
 نمونه ای برای دریافت لینک ها به زبان پایتون:
 [کلیک](https://github.com/robonamari/meme-api/blob/main/main.py)
 
-
 ## منابع
 * [سرور سقوط ماه در دیسکورد](https://discord.gg/BsaC3QgEQz)
-
-
-## همکاران
-[![contributors](https://contrib.rocks/image?repo=robonamari/Good_Night-database)](https://github.com/robonamari/Good_Night-database/graphs/contributors)
+* 
