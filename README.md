@@ -1,6 +1,6 @@
 <div align="center">
 
-[**🇮🇷 فارسی**](README_fa.md)
+[**🇮🇷 فارسی**](.github/README/fa.md)
 </div>
 
 <p align="center">
@@ -12,15 +12,13 @@
 
 ---
 
-Send your requests here: https://good-night-database.robonamari.com/database.json
-- [ ] Picture
-- [ ] Video
-- [x] Gif
-- [x] Text based Good Night
+## Features
+- Fetches meme URLs from an online JSON database.
+- Only contains short links for quick access.
 
-| Text | Gif |
-| ---- | --- |
-| 20   | 32  |
+| Picture | Video  | Text | Gif    | total  |
+| ------- | ------ | ---- | ------ | ------ |
+| :x:     | :x:    | 20   | 32     | 52     |
 
 ## Help
 An exmaple to gather links with python:
