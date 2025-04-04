@@ -12,7 +12,7 @@
 
 ---
 
-This project contains a collection of Iranian good night messages provided in a JSON file. This dataset can be used in various applications and services to display good night messages to users.
+This project contains a collection of Iranian good night messages presented in a JSON file. This collection can be utilized in various applications and services to display content to users.
 
 ## Features
 - Fetches Good Night URLs from an online JSON database.
