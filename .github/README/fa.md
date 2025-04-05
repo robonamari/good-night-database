@@ -24,7 +24,29 @@
 
 ## کمک
 نمونه ای برای دریافت لینک ها به زبان پایتون:
-[کلیک](https://github.com/robonamari/meme-api/blob/main/main.py)
+```python
+import random
+
+import requests # pip install requests==2.32.3
+
+print(
+    random.choice(
+        requests.get("https://good-night-database.robonamari.com/database.json").json()[
+            "messages"
+        ]
+    )
+)
+
+# or
+
+print(
+    random.choice(
+        requests.get("https://good-night-database.robonamari.com/database.json").json()[
+            "gifs"
+        ]
+    )
+)
+```
 
 ## منابع
 * [سرور سقوط ماه در دیسکورد](https://discord.gg/BsaC3QgEQz)
