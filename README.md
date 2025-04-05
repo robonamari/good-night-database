@@ -24,7 +24,17 @@ This project contains a collection of Iranian good night messages presented in a
 
 ## Help
 An exmaple to gather links with python:
-[Click Here](https://github.com/robonamari/Good_Night-database/blob/main/main.py)
+```python
+import random
+
+import requests
+
+print(
+    random.choice(
+        requests.get("https://meme-database.robonamari.com/database.json").json()["links"]
+    )
+)
+```
 
 ## Sources
 * [MoonFall Discord Server](https://discord.gg/BsaC3QgEQz)
