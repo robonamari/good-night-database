@@ -31,7 +31,19 @@ import requests
 
 print(
     random.choice(
-        requests.get("https://meme-database.robonamari.com/database.json").json()["links"]
+        requests.get("https://good-night-database.robonamari.com/database.json").json()[
+            "messages"
+        ]
+    )
+)
+
+# or
+
+print(
+    random.choice(
+        requests.get("https://good-night-database.robonamari.com/database.json").json()[
+            "gifs"
+        ]
     )
 )
 ```
