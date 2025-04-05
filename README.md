@@ -15,7 +15,7 @@
 This project contains a collection of Iranian good night messages presented in a JSON file. This collection can be utilized in various applications and services to display content to users.
 
 ## Features
-- Fetches Good Night URLs from an online JSON database.
+- Fetching content from an online JSON database.
 - Only contains short links for quick access.
 
 | Picture | Video  | Text | Gif    | total  |
