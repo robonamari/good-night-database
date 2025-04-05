@@ -27,7 +27,7 @@ An exmaple to gather links with python:
 ```python
 import random
 
-import requests
+import requests # pip install requests==2.32.3
 
 print(
     random.choice(
