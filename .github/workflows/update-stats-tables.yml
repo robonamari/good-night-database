@@ -1,0 +1,75 @@
+name: Update Stats Tables
+
+on:
+  push:
+    paths:
+      - 'database.json'
+
+permissions:
+  contents: write
+
+jobs:
+  update-tables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Read and update stats
+        run: |
+          json=$(cat database.json)
+          declare -A stats
+          stats[pic]=$(echo "$json" | jq '.pictures | length')
+          stats[vid]=$(echo "$json" | jq '.videos | length')
+          stats[txt]=$(echo "$json" | jq '.texts | length')
+          stats[gif]=$(echo "$json" | jq '.gifs | length')
+          total=0
+          for k in pic vid txt gif; do
+            total=$((total + stats[$k]))
+          done
+          stats[total]=$total
+          find . -type f -path "*README*.md" | while read path; do
+            awk -v pic="${stats[pic]}" -v vid="${stats[vid]}" -v txt="${stats[txt]}" -v gif="${stats[gif]}" -v ttl="${stats[total]}" '
+              BEGIN {
+                state = 0
+              }
+              {
+                if (state == 0 && $0 ~ /^\|.*\|.*\|.*\|.*\|/) {
+                  state = 1
+                  print
+                  next
+                }
+                if (state == 1 && $0 ~ /^\| *:?-+:? *\|/) {
+                  state = 2
+                  print
+                  next
+                }
+                if (state == 2) {
+                  split($0, cols, "|")
+                  out = "|"
+                  for (i = 2; i < length(cols); i++) {
+                    col = tolower(cols[i])
+                    gsub(/ /, "", col)
+                    if (i == 2) val = (pic > 0) ? pic : ":x:"      # 1 column
+                    else if (i == 3) val = (vid > 0) ? vid : ":x:" # 2 column
+                    else if (i == 4) val = (txt > 0) ? txt : ":x:" # 3 column
+                    else if (i == 5) val = (gif > 0) ? gif : ":x:" # 4 column
+                    else if (i == 6) val = ttl                     # 5 column
+                    else val = ":x:"
+                    out = out " " val " |"
+                  }
+                  print out
+                  state = 3
+                  next
+                }
+                print
+              }
+            ' "$path" > temp.md && mv temp.md "$path"
+          done
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git add .
+          git commit -m "🔄 Auto-update Markdown tables from database.json" || echo "No changes"
+          git push
