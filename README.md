@@ -22,7 +22,7 @@ This project contains a collection of Iranian good night messages presented in a
 
 | Picture | Video | Text | Gif | total |
 | :-----: | :---: | :--: | :-: | :---: |
-|   :x:   |  :x:  |  20  | 32  |  52   |
+| :x: | :x: | 20 | 37 | 57 |
 
 ## Help
 
