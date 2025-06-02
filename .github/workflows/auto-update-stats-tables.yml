@@ -1,0 +1,70 @@
+name: Auto Update Stats Tables
+  push:
+    paths:
+      - 'database.json'
+
+permissions:
+  contents: write
+
+jobs:
+  update-tables:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Extract stats from database.json
+        id: stats
+        run: |
+          pic=$(jq '.pictures | length' database.json)
+          vid=$(jq '.videos | length' database.json)
+          txt=$(jq '.texts | length' database.json)
+          gif=$(jq '.gifs | length' database.json)
+          total=$((pic + vid + txt + gif))
+          echo "::set-output name=pic::$pic"
+          echo "::set-output name=vid::$vid"
+          echo "::set-output name=txt::$txt"
+          echo "::set-output name=gif::$gif"
+          echo "::set-output name=total::$total"
+      - name: Update README tables
+        run: |
+          for file in $(find . -type f -name "README*.md"); do
+            awk -v pic="${{ steps.stats.outputs.pic }}" \
+                -v vid="${{ steps.stats.outputs.vid }}" \
+                -v txt="${{ steps.stats.outputs.txt }}" \
+                -v gif="${{ steps.stats.outputs.gif }}" \
+                -v ttl="${{ steps.stats.outputs.total }}" '
+              BEGIN { state=0 }
+              {
+                if (state==0 && $0 ~ /^\|.*\|.*\|.*\|.*\|/) { state=1; print; next }
+                if (state==1 && $0 ~ /^\| *:?-+:? *\|/) { state=2; print; next }
+                if (state==2) {
+                  split($0, cols, "|")
+                  out="|"
+                  for (i=2; i<length(cols); i++) {
+                    if(i==2) val=(pic>0)?pic:":x:"
+                    else if(i==3) val=(vid>0)?vid:":x:"
+                    else if(i==4) val=(txt>0)?txt:":x:"
+                    else if(i==5) val=(gif>0)?gif:":x:"
+                    else if(i==6) val=ttl
+                    else val=":x:"
+                    out=out " " val " |"
+                  }
+                  print out
+                  state=3
+                  next
+                }
+                print
+              }
+            ' "$file" > tmp.md && mv tmp.md "$file"
+          done
+      - name: Commit and push changes if any
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          if ! git diff --quiet; then
+            git add .
+            git commit -m "🔄 Auto-update Markdown tables from database.json"
+            git push
+          else
+            echo "No changes detected"
+          fi
