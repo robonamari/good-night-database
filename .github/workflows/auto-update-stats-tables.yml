@@ -3,7 +3,7 @@ name: Auto Update Stats Tables
 on:
   push:
     paths:
-      - 'database.json'
+      - "database.json"
 
 permissions:
   contents: write
