@@ -5,10 +5,10 @@
 </div>
 
 <p align="center">
-    <img src="https://img.shields.io/github/languages/code-size/robonamari/Good_Night-database?style=flat" alt="Code Size">
-    <img src="https://tokei.rs/b1/github/robonamari/Good_Night-database?style=flat" alt="Total lines">
-    <img src="https://img.shields.io/badge/all%20languages-all%20Versions-blue" alt="All Versions">
-    <img src="https://img.shields.io/github/license/robonamari/Good_Night-database" alt="GitHub license">
+  <img src="https://img.shields.io/github/languages/code-size/robonamari/Good_Night-database?style=flat" alt="Code Size">
+  <img src="https://tokei.rs/b1/github/robonamari/Good_Night-database?style=flat" alt="Total lines">
+  <img src="https://img.shields.io/badge/all%20languages-all%20Versions-blue" alt="All Versions">
+  <img src="https://img.shields.io/github/license/robonamari/Good_Night-database" alt="GitHub license">
 </p>
 
 ---
@@ -21,39 +21,12 @@
 - دریافت محتوا از یک پایگاه داده آنلاین JSON.
 - شامل فقط لینک های کوتاه برای دسترسی سریع.
 
-| عکس | ویدیو | متن | گیف | کل  |
+| عکس | ویدیو | متن | گیف | کل |
 | :-: | :---: | :-: | :-: | :-: |
 | :x: |  :x:  | 20  | 37  | 57  |
 
 ## کمک
 
-نمونه ای برای دریافت لینک ها به زبان پایتون:
+برای مشاهده نمونه کدهایی جهت دریافت لینک‌ها، به پوشه examples/ مراجعه کنید.
 
-```python
-import random
-
-import requests  # pip install requests==2.32.3
-
-print(
-    random.choice(
-        requests.get("https://good-night-database.robonamari.com/database.json").json()[
-            "texts"
-        ]
-    )
-)
-
-# or
-
-print(
-    random.choice(
-        requests.get("https://good-night-database.robonamari.com/database.json").json()[
-            "gifs"
-        ]
-    )
-)
-```
-
-## منابع
-
-- [سرور سقوط ماه در دیسکورد](https://discord.gg/BsaC3QgEQz)
-  </p>
+</p>
