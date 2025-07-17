@@ -1,6 +1,6 @@
 import random
 
-import requests  # pip install requests==2.32.3
+import requests  # pip install requests
 
 print(
 random.choice(
