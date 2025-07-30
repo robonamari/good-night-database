@@ -175,6 +175,9 @@
 
 <body>
   <div class="container">
+    <div class="container">
+      <div class="gif-card"> <img src="https://good-night-database.robonamari.com/gifs/gif1.gif" alt="GIF" width="300" height="300" fetchpriority="high" /> </div>
+    </div>
     <div class="notice">برای انتخاب روش روی هر گیف یکبار کلیک کنید.</div>
   </div>
   <div id="modal">
@@ -197,7 +200,6 @@
       modal.style.display = "none";
       currentGifUrl = null;
     }
-
     async function copyGIF(url) {
       try {
         await navigator.clipboard.writeText(url);
@@ -226,23 +228,25 @@
         if (currentGifUrl) downloadGIF(currentGifUrl);
         hideModal();
       };
+      document.querySelectorAll(".gif-card img").forEach((img) => {
+        img.onclick = () => showModal(img.src);
+      });
     });
     async function loadGIFs() {
       const container = document.querySelector(".container");
       try {
-        const res = await fetch(
-          "https://good-night-database.robonamari.com/database.json"
-        );
+        const res = await fetch("https://good-night-database.robonamari.com/database.json");
         if (!res.ok) throw new Error("خطا در دریافت گیف‌ها");
         const data = await res.json();
-        data.gifs.forEach((gifUrl) => {
+        data.gifs.forEach((gifUrl, index) => {
+          if (index === 0) return;
           const div = document.createElement("div");
           div.className = "gif-card";
           const img = document.createElement("img");
           img.src = gifUrl;
           img.alt = "GIF";
           img.loading = "lazy";
-          div.onclick = () => showModal(gifUrl);
+          img.onclick = () => showModal(gifUrl);
           div.appendChild(img);
           container.appendChild(div);
         });
