@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+
+<head>
+  <meta charset="UTF-8">
+  <title>night melodies - گیف‌های شبانه</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="title" content="night melodies - گیف‌های شبانه">
+  <meta name="description" content="گلچینی از گیف‌های زیبا و آرامش‌بخش شبانه برای استفاده در استوری، کپشن و اشتراک‌گذاری. لینک هر گیف با یک کلیک کپی می‌شود تا راحت‌تر استفاده کنید.">
+  <meta name="keywords" content="گیف شبانه, گیف آرامش‌بخش, گیف برای استوری, گیف شب, لینک گیف">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="theme-color" content="">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://good-night-database.robonamari.com/app/gifs/">
+  <meta property="og:title" content="night melodies - گیف‌های شبانه">
+  <meta property="og:description" content="گلچینی از گیف‌های زیبا و آرامش‌بخش شبانه برای استفاده در استوری، کپشن و اشتراک‌گذاری. لینک هر گیف با یک کلیک کپی می‌شود تا راحت‌تر استفاده کنید.">
+  <meta property="og:image" content="https://good-night-database.robonamari.com/favicon.ico">
+  <meta property="og:site_name" content="night melodies">
+  <link rel="canonical" href="https://good-night-database.robonamari.com/app/gifs/">
+  <link rel="icon" href="https://good-night-database.robonamari.com/favicon.ico" type="image/x-icon">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #090017 0%, #140031 50%, #05000f 100%);
+      font-family: Shabnam;
+      color: #e0e0ff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(1px 1px at 15% 20%, #ffffff 70%, transparent),
+        radial-gradient(1px 1px at 80% 25%, #00ffff 70%, transparent),
+        radial-gradient(1px 1px at 35% 75%, #ff00e1 70%, transparent),
+        radial-gradient(1px 1px at 60% 90%, #ffffff 70%, transparent),
+        radial-gradient(1px 1px at 50% 50%, #9effff 70%, transparent);
+      background-repeat: repeat;
+      background-size: 220px 220px;
+      animation: cyberTwinkle 12s infinite linear;
+      z-index: -1;
+      opacity: 0.5;
+    }
+    .notice {
+      background: linear-gradient(to right, #00eaff, #ff00f7);
+      color: #12001f;
+      padding: 1rem 1.5rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 16px;
+      margin: 1.5rem auto;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 0 25px #ff00f7aa, 0 0 12px #00eaff99;
+    }
+    .gif-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      margin: 1.5rem auto;
+      padding: 1rem;
+      max-width: 400px;
+      border-radius: 18px;
+      box-shadow: 0 0 18px #00ffff55, 0 0 25px #ff00ff44;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gif-card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 35px #00ffffaa, 0 0 40px #ff00ffaa;
+    }
+    .gif-card img {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      color: #0d001e;
+      padding: 0.75rem 1.25rem;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 9999;
+      box-shadow: 0 0 15px #00eaff88;
+    }
+    .toast.show {
+      opacity: 1;
+    }
+    @keyframes cyberTwinkle {
+      0%,
+      100% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 0.2;
+      }
+    }
+    @media (max-width: 480px) {
+      .gif-card {
+        max-width: 90%;
+        margin: 1rem auto;
+      }
+    }
+    #modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      direction: rtl;
+    }
+    #modalContent {
+      background: #1a0033;
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 320px;
+      text-align: center;
+      color: #e0e0ff;
+      font-family: Shabnam;
+    }
+    #modalContent p {
+      margin-bottom: 20px;
+    }
+    #modalContent button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      font-family: Shabnam;
+      font-size: 1rem;
+    }
+    #downloadBtn {
+      background-color: #00ffff;
+      color: #12001f;
+    }
+    #copyBtn {
+      background-color: #ff00ff;
+      color: #12001f;
+    }
+    #closeModal {
+      margin-top: 15px;
+      background: none;
+      border: none;
+      color: #e0e0ff;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="notice">برای انتخاب روش روی هر گیف یکبار کلیک کنید.</div>
+  </div>
+  <div id="modal">
+    <div id="modalContent">
+      <p>چه کاری می‌خواهید انجام دهید؟</p> <button id="downloadBtn">دانلود</button> <button id="copyBtn">کپی لینک</button> <br> <button id="closeModal">انصراف</button>
+    </div>
+  </div>
+  <div class="toast" id="toast">لینک کپی شد!</div>
+  <script>
+    const modal = document.getElementById("modal");
+    const downloadBtn = document.getElementById("downloadBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const closeModal = document.getElementById("closeModal");
+    let currentGifUrl = null;
+    function showModal(url) {
+      currentGifUrl = url;
+      modal.style.display = "flex";
+    }
+    function hideModal() {
+      modal.style.display = "none";
+      currentGifUrl = null;
+    }
+
+    async function copyGIF(url) {
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast("لینک کپی شد!");
+      } catch {
+        showToast("کپی نشد!");
+      }
+    }
+    function downloadGIF(url) {
+      const fileName = url.substring(url.lastIndexOf("/") + 1);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast("دانلود آغاز شد!");
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      closeModal.onclick = hideModal;
+      copyBtn.onclick = () => {
+        if (currentGifUrl) copyGIF(currentGifUrl);
+        hideModal();
+      };
+      downloadBtn.onclick = () => {
+        if (currentGifUrl) downloadGIF(currentGifUrl);
+        hideModal();
+      };
+    });
+    async function loadGIFs() {
+      const container = document.querySelector(".container");
+      try {
+        const res = await fetch(
+          "https://good-night-database.robonamari.com/database.json"
+        );
+        if (!res.ok) throw new Error("خطا در دریافت گیف‌ها");
+        const data = await res.json();
+        data.gifs.forEach((gifUrl) => {
+          const div = document.createElement("div");
+          div.className = "gif-card";
+          const img = document.createElement("img");
+          img.src = gifUrl;
+          img.alt = "GIF";
+          img.loading = "lazy";
+          div.onclick = () => showModal(gifUrl);
+          div.appendChild(img);
+          container.appendChild(div);
+        });
+      } catch (err) {
+        console.error(err);
+        showToast("خطا در بارگذاری گیف‌ها");
+      }
+    }
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2000);
+    }
+    loadGIFs();
+  </script>
+</body>
+
+</html>
