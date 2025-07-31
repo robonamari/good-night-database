@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.robonamari.night_melodies_app",
+        "sha256_cert_fingerprints": ["FF:C3:10:1B:32:75:7C:A4:FA:10:2A:D1:91:CE:C8:84:D4:68:3F:5D:7E:CC:98:98:6F:50:7C:EB:81:28:54:F0"]
+      }
+    }]
