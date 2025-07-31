@@ -5,7 +5,7 @@
 If you discover a vulnerability in this project, please report it as soon as possible to help us address it quickly and responsibly.
 
 You can report security vulnerabilities by opening an issue at our GitHub repository:
-[GitHub Issue Tracker](https://github.com/robonamari/Good_Night-database/issues)
+[GitHub Issue Tracker](https://github.com/robonamari/good-night-database/issues)
 
 For critical or more urgent vulnerabilities, you may email us directly at: robonamari@gmail.com
 

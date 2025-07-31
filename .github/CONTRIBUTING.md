@@ -1,6 +1,6 @@
-## Contributing to Good_Night-database
+## Contributing to good-night-database
 
-We’re excited to have you contribute to Good_Night-database! To ensure a smooth and effective collaboration, we ask that you take a moment to review the following guidelines. These are intended to make the process as easy as possible for everyone involved.
+We’re excited to have you contribute to good-night-database! To ensure a smooth and effective collaboration, we ask that you take a moment to review the following guidelines. These are intended to make the process as easy as possible for everyone involved.
 
 Please note that these are guidelines, not strict rules — we encourage contributions of all kinds, and we’re here to help you along the way.
 

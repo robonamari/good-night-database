@@ -2,10 +2,10 @@
 
 [**Other Languages**](.github/README/)
 
-![Code Size](https://img.shields.io/github/languages/code-size/robonamari/Good_Night-database?style=flat)
-![Total lines](https://tokei.rs/b1/github/robonamari/Good_Night-database?style=flat)
+![Code Size](https://img.shields.io/github/languages/code-size/robonamari/good-night-database?style=flat)
+![Total lines](https://tokei.rs/b1/github/robonamari/good-night-database?style=flat)
 ![All Versions](https://img.shields.io/badge/all%20languages-all%20Versions-blue)
-![GitHub license](https://img.shields.io/github/license/robonamari/Good_Night-database)
+![GitHub license](https://img.shields.io/github/license/robonamari/good-night-database)
 
 ---
 

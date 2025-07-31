@@ -2,10 +2,10 @@
 
 [**🇺🇸 English**](../../README.md)
 
-![حجم کد](https://img.shields.io/github/languages/code-size/robonamari/Good_Night-database?style=flat)
-![تعداد خطوط](https://tokei.rs/b1/github/robonamari/Good_Night-database?style=flat)
+![حجم کد](https://img.shields.io/github/languages/code-size/robonamari/good-night-database?style=flat)
+![تعداد خطوط](https://tokei.rs/b1/github/robonamari/good-night-database?style=flat)
 ![تمامی نسخه ها](https://img.shields.io/badge/all%20languages-all%20Versions-blue)
-![مجوز گیت هاب](https://img.shields.io/github/license/robonamari/Good_Night-database)
+![مجوز گیت هاب](https://img.shields.io/github/license/robonamari/good-night-database)
 
 ---
 
