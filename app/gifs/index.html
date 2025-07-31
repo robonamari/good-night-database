@@ -257,6 +257,9 @@
       setTimeout(() => toast.classList.remove("show"), 2000);
     }
     loadGIFs();
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('/app/sw.js')
+    }
   </script>
 </body>
 

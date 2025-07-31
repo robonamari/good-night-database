@@ -125,6 +125,11 @@
 <body>
   <h1>به night melodies خوش آمدید</h1>
   <div class="menu"> <a href="texts/">متن‌ها</a> <a href="downloads/">دانلودها</a> <a href="gifs/">گیف‌ها</a> </div>
+  <script>
+  if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('/app/sw.js')
+    }
+  </script>
 </body>
 
 </html>
