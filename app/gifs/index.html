@@ -230,18 +230,22 @@
     async function loadGIFs() {
       const container = document.querySelector(".container");
       try {
-        const res = await fetch(
-          "https://good-night-database.robonamari.com/database.json"
-        );
+        const res = await fetch("https://good-night-database.robonamari.com/database.json");
         if (!res.ok) throw new Error("خطا در دریافت گیف‌ها");
         const data = await res.json();
-        data.gifs.forEach((gifUrl) => {
+        data.gifs.forEach((gifUrl, index) => {
           const div = document.createElement("div");
           div.className = "gif-card";
           const img = document.createElement("img");
           img.src = gifUrl;
           img.alt = "GIF";
-          img.loading = "lazy";
+          if (index === 0) {
+            img.loading = "eager";
+            img.decoding = "async";
+            img.setAttribute("fetchpriority", "high");
+          } else {
+            img.loading = "lazy";
+          }
           div.onclick = () => showModal(gifUrl);
           div.appendChild(img);
           container.appendChild(div);
