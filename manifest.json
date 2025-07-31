@@ -6,7 +6,7 @@
   "description": "گلچین متن‌های شبانه‌ی خاص برای آرامش، کپشن، استوری و اشتراک‌گذاری. کپی با یک کلیک.",
   "background_color": "#0b0026",
   "theme_color": "#6a00ff",
-  "start_url": "/",
+  "start_url": "/app/",
   "dir": "rtl",
   "scope": "/",
   "lang": "fa",
