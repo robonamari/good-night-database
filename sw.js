@@ -6,12 +6,14 @@ self.addEventListener("message", (event) => {
   }
 });
 workbox.routing.registerRoute(
-  ({request}) => true,
+  ({
+    request
+  }) => true,
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: CACHE,
     plugins: [
       new workbox.expiration.ExpirationPlugin({
-        maxAgeSeconds: 5 * 24 * 60 * 60,
+        maxAgeSeconds: 7 * 24 * 60 * 60,
       }),
     ],
   })
