@@ -8,7 +8,7 @@ self.addEventListener("message", (event) => {
 workbox.routing.registerRoute(
   ({
     request
-  }) => true,
+  }) => request.destination === 'document',
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: CACHE,
     plugins: [
