@@ -127,13 +127,20 @@
   <h1>به night melodies خوش آمدید</h1>
   <div class="menu"> <a href="texts/">متن‌ها</a> <a href="#" id="installBtn" style="display:none;">نصب وب اپلیکیشن</a> <a href="gifs/">گیف‌ها</a> </div>
   <script>
-    const isInstalled = window.matchMedia('(display-mode: standalone), (display-mode: window-controls-overlay)').matches;
-    if (!isInstalled) {
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
       document.getElementById('installBtn').style.display = 'inline-block';
-    }
-    if (typeof navigator.serviceWorker !== 'undefined') {
-      navigator.serviceWorker.register('/sw.js')
-    }
+    });
+    document.getElementById('installBtn').addEventListener('click', () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+      }
+    });
+      if (typeof navigator.serviceWorker !== 'undefined') {
+        navigator.serviceWorker.register('/sw.js')
+      }
   </script>
 </body>
 
