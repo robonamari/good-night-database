@@ -150,35 +150,31 @@
   <div class="toast" id="toast">متن کپی شد!</div>
   <script>
     async function loadTexts() {
-      const container = document.querySelector('.container');
       try {
-        const res = await fetch('https://good-night-database.robonamari.com/database.json');
-        if (!res.ok) throw new Error('خطا در دریافت داده‌ها');
-        const data = await res.json();
-        data.texts.forEach(text => {
-          const div = document.createElement('div');
-          div.className = 'card';
-          div.textContent = text;
-          div.onclick = () => copyText(div);
-          container.appendChild(div);
+        const { texts } = await (await fetch('https://good-night-database.robonamari.com/database.json')).json();
+        const c = document.querySelector('.container');
+        texts.forEach(t => {
+          const d = document.createElement('div');
+          d.className = 'card';
+          d.textContent = t;
+          d.onclick = () => copyText(t);
+          c.appendChild(d);
         });
-      } catch (error) {
-        console.error(error);
+      } catch (e) {
+        console.error(e);
         showToast('خطا در بارگذاری متن‌ها');
       }
     }
-    function copyText(el) {
-      const text = el.innerText;
-      navigator.clipboard.writeText(text)
+    const copyText = t =>
+      navigator.clipboard.writeText(t)
         .then(() => showToast("متن کپی شد!"))
         .catch(() => showToast("کپی نشد!"));
-    }
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
-    }
+    const showToast = m => {
+      const t = document.getElementById('toast');
+      t.textContent = m;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    };
     loadTexts();
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('/sw.js')
