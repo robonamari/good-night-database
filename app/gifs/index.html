@@ -184,82 +184,63 @@
   </div>
   <div class="toast" id="toast">لینک کپی شد!</div>
   <script>
-    const modal = document.getElementById("modal");
-    const downloadBtn = document.getElementById("downloadBtn");
-    const copyBtn = document.getElementById("copyBtn");
-    const closeModal = document.getElementById("closeModal");
     let currentGifUrl = null;
-    function showModal(url) {
+    const showToast = m => {
+      const t = document.getElementById("toast");
+      t.textContent = m;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2000);
+    };
+    const showModal = url => {
       currentGifUrl = url;
-      modal.style.display = "flex";
-    }
-    function hideModal() {
-      modal.style.display = "none";
+      document.getElementById("modal").style.display = "flex";
+    };
+    const hideModal = () => {
+      document.getElementById("modal").style.display = "none";
       currentGifUrl = null;
-    }
-    async function copyGIF(url) {
+    };
+    const copyGIF = async u => {
       try {
-        await navigator.clipboard.writeText(url);
+        await navigator.clipboard.writeText(u);
         showToast("لینک کپی شد!");
       } catch {
         showToast("کپی نشد!");
       }
-    }
-    function downloadGIF(url) {
-      const fileName = url.substring(url.lastIndexOf("/") + 1);
+    };
+    const downloadGIF = u => {
       const a = document.createElement("a");
-      a.href = url;
-      a.download = fileName;
-      document.body.appendChild(a);
+      a.href = u;
+      a.download = u.split("/").pop();
+      document.body.append(a);
       a.click();
-      document.body.removeChild(a);
+      a.remove();
       showToast("دانلود آغاز شد!");
-    }
-    document.addEventListener("DOMContentLoaded", () => {
-      closeModal.onclick = hideModal;
-      copyBtn.onclick = () => {
-        if (currentGifUrl) copyGIF(currentGifUrl);
-        hideModal();
-      };
-      downloadBtn.onclick = () => {
-        if (currentGifUrl) downloadGIF(currentGifUrl);
-        hideModal();
-      };
-    });
+    };
     async function loadGIFs() {
-      const container = document.querySelector(".container");
       try {
-        const res = await fetch("https://good-night-database.robonamari.com/database.json");
-        if (!res.ok) throw new Error("خطا در دریافت گیف‌ها");
-        const data = await res.json();
-        data.gifs.forEach((gifUrl, index) => {
-          const div = document.createElement("div");
-          div.className = "gif-card";
+        const { gifs } = await (await fetch("https://good-night-database.robonamari.com/database.json")).json();
+        const c = document.querySelector(".container");
+        gifs.forEach((u, i) => {
+          const d = document.createElement("div");
+          d.className = "gif-card";
           const img = document.createElement("img");
-          img.src = gifUrl;
+          img.src = u;
           img.alt = "GIF";
-          if (index === 0) {
-            img.loading = "eager";
-            img.decoding = "async";
-            img.setAttribute("fetchpriority", "high");
-          } else {
-            img.loading = "lazy";
-          }
-          div.onclick = () => showModal(gifUrl);
-          div.appendChild(img);
-          container.appendChild(div);
+          i === 0 ? (img.loading = "eager", img.decoding = "async", img.setAttribute("fetchpriority", "high")) : img.loading = "lazy";
+          d.onclick = () => showModal(u);
+          d.append(img);
+          c.append(d);
         });
-      } catch (err) {
-        console.error(err);
+      } catch (e) {
+        console.error(e);
         showToast("خطا در بارگذاری گیف‌ها");
       }
     }
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-      toast.textContent = message;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 2000);
-    }
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("closeModal").onclick = hideModal;
+      document.getElementById("copyBtn").onclick = () => { if (currentGifUrl) copyGIF(currentGifUrl); hideModal(); };
+      document.getElementById("downloadBtn").onclick = () => { if (currentGifUrl) downloadGIF(currentGifUrl); hideModal(); };
+    });
     loadGIFs();
     if (typeof navigator.serviceWorker !== 'undefined') {
       navigator.serviceWorker.register('/sw.js')
