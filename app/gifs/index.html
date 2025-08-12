@@ -242,8 +242,8 @@
       document.getElementById("downloadBtn").onclick = () => { if (currentGifUrl) downloadGIF(currentGifUrl); hideModal(); };
     });
     loadGIFs();
-    if (typeof navigator.serviceWorker !== 'undefined') {
-      navigator.serviceWorker.register('/sw.js')
+    if (typeof navigator.serviceWorker !== "undefined") {
+      navigator.serviceWorker.register("/sw.js")
     }
   </script>
 </body>

@@ -1,5 +1,5 @@
 const CACHE = "offline";
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js");
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
@@ -8,7 +8,7 @@ self.addEventListener("message", (event) => {
 workbox.routing.registerRoute(
   ({
     request
-  }) => request.destination === 'document',
+  }) => request.destination === "document",
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: CACHE,
     plugins: [

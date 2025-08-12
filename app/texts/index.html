@@ -151,18 +151,18 @@
   <script>
     async function loadTexts() {
       try {
-        const { texts } = await (await fetch('https://good-night-database.robonamari.com/database.json')).json();
-        const c = document.querySelector('.container');
+        const { texts } = await (await fetch("https://good-night-database.robonamari.com/database.json")).json();
+        const c = document.querySelector(".container");
         texts.forEach(t => {
-          const d = document.createElement('div');
-          d.className = 'card';
+          const d = document.createElement("div");
+          d.className = "card";
           d.textContent = t;
           d.onclick = () => copyText(t);
           c.appendChild(d);
         });
       } catch (e) {
         console.error(e);
-        showToast('خطا در بارگذاری متن‌ها');
+        showToast("خطا در بارگذاری متن‌ها");
       }
     }
     const copyText = t =>
@@ -170,14 +170,14 @@
         .then(() => showToast("متن کپی شد!"))
         .catch(() => showToast("کپی نشد!"));
     const showToast = m => {
-      const t = document.getElementById('toast');
+      const t = document.getElementById("toast");
       t.textContent = m;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2000);
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2000);
     };
     loadTexts();
-    if (typeof navigator.serviceWorker !== 'undefined') {
-      navigator.serviceWorker.register('/sw.js')
+    if (typeof navigator.serviceWorker !== "undefined") {
+      navigator.serviceWorker.register("/sw.js")
     }
   </script>
 </body>

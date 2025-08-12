@@ -128,18 +128,18 @@
   <div class="menu"> <a href="texts/">متن‌ها</a> <a href="#" id="installBtn" style="display:none;">نصب وب اپلیکیشن</a> <a href="gifs/">گیف‌ها</a> </div>
   <script>
     let deferredPrompt;
-    window.addEventListener('beforeinstallprompt', (e) => {
+    window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      document.getElementById('installBtn').style.display = 'inline-block';
+      document.getElementById("installBtn").style.display = "inline-block";
     });
-    document.getElementById('installBtn').addEventListener('click', () => {
+    document.getElementById("installBtn").addEventListener("click", () => {
       if (deferredPrompt) {
         deferredPrompt.prompt();
       }
     });
-      if (typeof navigator.serviceWorker !== 'undefined') {
-        navigator.serviceWorker.register('/sw.js')
+      if (typeof navigator.serviceWorker !== "undefined") {
+        navigator.serviceWorker.register("/sw.js")
       }
   </script>
 </body>
