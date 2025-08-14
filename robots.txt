@@ -1,5 +1,2 @@
 User-agent: *
 Disallow: /cdn-cgi/
-Disallow: /
-Allow: /$
-Allow: /app
