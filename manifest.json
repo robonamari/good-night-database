@@ -12,40 +12,12 @@
   "lang": "fa",
   "orientation": "natural",
   "display": "standalone",
-  "iarc_rating_id": "7+",
-  "prefer_related_applications": false,
-  "launch_handler": {
-    "client_mode": "navigate"
-  },
-  "categories": [
-    "books",
-    "lifestyle",
-    "magazines",
-    "personalization",
-    "photo",
-    "social"
-  ],
   "display_override": [
     "window-controls-overlay",
     "standalone"
   ],
-  "edge_side_panel": {
-    "preferred_width": 376
-  },
-  "screenshots": [
-    {
-      "src": ".github/banner.png",
-      "sizes": "1056x594",
-      "type": "image/png",
-      "platform": "windows"
-    },
-    {
-      "src": "content/screenshot/android/home.png",
-      "sizes": "432x768",
-      "type": "image/png",
-      "platform": "android"
-    }
-  ],
+  "iarc_rating_id": "7+",
+  "prefer_related_applications": false,
   "shortcuts": [
     {
       "name": "متن‌های شبانه",
@@ -958,6 +930,17 @@
       ]
     }
   ],
+  "categories": [
+    "books",
+    "lifestyle",
+    "magazines",
+    "personalization",
+    "photo",
+    "social"
+  ],
+  "edge_side_panel": {
+    "preferred_width": 376
+  },
   "icons": [
     {
       "src": "content/windows11/SmallTile.scale-100.png",
@@ -1408,5 +1391,26 @@
       "sizes": "1024x1024"
     }
   ],
+  "screenshots": [
+    {
+      "src": ".github/banner.png",
+      "sizes": "1056x594",
+      "type": "image/png",
+      "platform": "windows"
+    },
+    {
+      "src": "content/screenshot/android/home.png",
+      "sizes": "432x768",
+      "type": "image/png",
+      "platform": "android"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": [
+      "navigate-existing",
+      "auto"
+    ]
+  },
+  "handle_links": "preferred",
   "version": "1.2.0"
 }
