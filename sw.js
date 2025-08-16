@@ -1,8 +1,8 @@
 const CACHE = "offline";
 const urlsToCache = [
-  "/app/gifs.html",
-  "/app/index.html",
-  "/app/texts.html"
+  "/app/gifs",
+  "/app/",
+  "/app/texts"
 ];
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js");
 self.addEventListener("message", (event) => {
