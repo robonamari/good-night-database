@@ -4,5 +4,11 @@
   "minify": true,
   "assets": {
     "directory": "./"
-  }
+  },
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "c397a1093571421fa5c47da3f04a0e2c"
+    }
+  ]
 }
