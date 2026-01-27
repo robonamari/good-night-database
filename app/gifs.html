@@ -6,20 +6,23 @@
   <title>گیف‌های شبانه | night melodies</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="title" content="گیف‌های شبانه | night melodies">
-  <meta name="description" content="گلچینی از گیف‌های زیبا و آرامش‌بخش شبانه برای استفاده در استوری، کپشن و اشتراک‌گذاری. لینک هر گیف با یک کلیک کپی می‌شود تا راحت‌تر استفاده کنید.">
+  <meta name="description"
+    content="گلچینی از گیف‌های زیبا و آرامش‌بخش شبانه برای استفاده در استوری، کپشن و اشتراک‌گذاری. لینک هر گیف با یک کلیک کپی می‌شود تا راحت‌تر استفاده کنید.">
   <meta name="keywords" content="گیف شبانه, گیف آرامش‌بخش, گیف برای استوری, گیف شب, لینک گیف">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#6a00ff">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://good-night-database.robonamari.com/app/gifs">
   <meta property="og:title" content="گیف‌های شبانه | night melodies">
-  <meta property="og:description" content="گلچینی از گیف‌های زیبا و آرامش‌بخش شبانه برای استفاده در استوری، کپشن و اشتراک‌گذاری. لینک هر گیف با یک کلیک کپی می‌شود تا راحت‌تر استفاده کنید.">
+  <meta property="og:description"
+    content="گلچینی از گیف‌های زیبا و آرامش‌بخش شبانه برای استفاده در استوری، کپشن و اشتراک‌گذاری. لینک هر گیف با یک کلیک کپی می‌شود تا راحت‌تر استفاده کنید.">
   <meta property="og:image" content="https://good-night-database.robonamari.com/favicon.ico">
   <meta property="og:site_name" content="night melodies">
   <link rel="canonical" href="https://good-night-database.robonamari.com/app/gifs">
   <link rel="icon" href="https://good-night-database.robonamari.com/favicon.ico" type="image/x-icon">
   <link rel="manifest" href="/manifest.json">
-  <link rel="preload" href="https://good-night-database.robonamari.com/database.json" as="fetch" type="application/json" crossorigin>
+  <link rel="preload" href="https://good-night-database.robonamari.com/database.json" as="fetch" type="application/json"
+    crossorigin>
   <style>
     body {
       margin: 0;
@@ -31,6 +34,7 @@
       min-height: 100vh;
       position: relative;
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -48,6 +52,7 @@
       z-index: -1;
       opacity: 0.5;
     }
+
     .notice {
       background: linear-gradient(to right, #00eaff, #ff00f7);
       color: #12001f;
@@ -60,6 +65,7 @@
       text-align: center;
       box-shadow: 0 0 25px #ff00f7aa, 0 0 12px #00eaff99;
     }
+
     .gif-card {
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
@@ -77,14 +83,17 @@
       align-items: center;
       justify-content: center;
     }
+
     .gif-card:hover {
       transform: scale(1.04);
       box-shadow: 0 0 35px #00ffffaa, 0 0 40px #ff00ffaa;
     }
+
     .gif-card img {
       max-width: 100%;
       border-radius: 12px;
     }
+
     .toast {
       position: fixed;
       bottom: 20px;
@@ -100,10 +109,13 @@
       z-index: 9999;
       box-shadow: 0 0 15px #00eaff88;
     }
+
     .toast.show {
       opacity: 1;
     }
+
     @keyframes cyberTwinkle {
+
       0%,
       100% {
         opacity: 0.6;
@@ -113,16 +125,14 @@
         opacity: 0.2;
       }
     }
+
     @media (max-width: 480px) {
       .gif-card {
         max-width: 90%;
         margin: 1rem auto;
       }
-      .notice {
-        font-size: 0.95rem;
-        padding: 0.7rem 1rem;
-      }
     }
+
     #modal {
       display: none;
       position: fixed;
@@ -136,6 +146,7 @@
       z-index: 10000;
       direction: rtl;
     }
+
     #modalContent {
       background: #1a0033;
       padding: 20px;
@@ -145,9 +156,11 @@
       color: #e0e0ff;
       font-family: Shabnam;
     }
+
     #modalContent p {
       margin-bottom: 20px;
     }
+
     #modalContent button {
       margin: 0 10px;
       padding: 10px 20px;
@@ -158,14 +171,17 @@
       font-family: Shabnam;
       font-size: 1rem;
     }
+
     #downloadBtn {
       background-color: #00ffff;
       color: #12001f;
     }
+
     #copyBtn {
       background-color: #ff00ff;
       color: #12001f;
     }
+
     #closeModal {
       margin-top: 15px;
       background: none;
@@ -183,7 +199,8 @@
   </div>
   <div id="modal">
     <div id="modalContent">
-      <p>چه کاری می‌خواهید انجام دهید؟</p> <button id="downloadBtn">دانلود</button> <button id="copyBtn">کپی لینک</button> <br> <button id="closeModal">انصراف</button>
+      <p>چه کاری می‌خواهید انجام دهید؟</p> <button id="downloadBtn">دانلود</button> <button id="copyBtn">کپی
+        لینک</button> <br> <button id="closeModal">انصراف</button>
     </div>
   </div>
   <div class="toast" id="toast">لینک کپی شد!</div>

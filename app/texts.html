@@ -13,13 +13,15 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://good-night-database.robonamari.com/app/texts">
   <meta property="og:title" content="متن‌های شبانه | night melodies">
-  <meta property="og:description" content="گلچین متن‌های شبانه‌ی خاص برای آرامش، کپشن، استوری و اشتراک‌گذاری. کپی با یک کلیک.">
+  <meta property="og:description"
+    content="گلچین متن‌های شبانه‌ی خاص برای آرامش، کپشن، استوری و اشتراک‌گذاری. کپی با یک کلیک.">
   <meta property="og:image" content="https://good-night-database.robonamari.com/favicon.ico">
   <meta property="og:site_name" content="night melodies">
   <link rel="canonical" href="https://good-night-database.robonamari.com/app/texts">
   <link rel="icon" href="https://good-night-database.robonamari.com/favicon.ico" type="image/x-icon">
   <link rel="manifest" href="/manifest.json">
-  <link rel="preload" href="https://good-night-database.robonamari.com/database.json" as="fetch" type="application/json" crossorigin>
+  <link rel="preload" href="https://good-night-database.robonamari.com/database.json" as="fetch" type="application/json"
+    crossorigin>
   <style>
     body {
       margin: 0;
@@ -31,6 +33,7 @@
       min-height: 100vh;
       position: relative;
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -48,6 +51,7 @@
       z-index: -1;
       opacity: 0.5;
     }
+
     .notice {
       background: linear-gradient(to right, #00eaff, #ff00f7);
       color: #12001f;
@@ -60,6 +64,7 @@
       text-align: center;
       box-shadow: 0 0 25px #ff00f7aa, 0 0 12px #00eaff99;
     }
+
     .card {
       background: rgba(255, 255, 255, 0.06);
       backdrop-filter: blur(16px);
@@ -77,13 +82,16 @@
       position: relative;
       overflow: hidden;
     }
+
     .card:hover {
       transform: scale(1.04);
       box-shadow: 0 0 40px #00ffffaa, 0 0 50px #ff00ffaa;
     }
+
     .card:active {
       transform: scale(0.97);
     }
+
     .card::before {
       content: "✦";
       position: absolute;
@@ -94,6 +102,7 @@
       opacity: 0.4;
       animation: pulseNeon 3s infinite ease-in-out;
     }
+
     .card::after {
       content: "✧";
       position: absolute;
@@ -104,6 +113,7 @@
       opacity: 0.4;
       animation: pulseNeon 4s infinite ease-in-out;
     }
+
     .toast {
       position: fixed;
       bottom: 20px;
@@ -119,22 +129,43 @@
       z-index: 9999;
       box-shadow: 0 0 15px #00eaff88;
     }
+
     .toast.show {
       opacity: 1;
     }
+
     @keyframes cyberTwinkle {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 0.2; }
+
+      0%,
+      100% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 0.2;
+      }
     }
+
     @keyframes pulseNeon {
-      0%, 100% { transform: scale(1); opacity: 0.4; }
-      50% { transform: scale(1.5); opacity: 1; }
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.4;
+      }
+
+      50% {
+        transform: scale(1.5);
+        opacity: 1;
+      }
     }
+
     @media (max-width: 480px) {
       .card {
         font-size: 1.05rem;
         padding: 1rem;
       }
+
       .notice {
         font-size: 0.95rem;
         padding: 0.7rem 1rem;
