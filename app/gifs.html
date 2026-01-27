@@ -210,64 +210,56 @@
   </div>
   <div class="toast" id="toast">لینک کپی شد!</div>
   <script>
+    const isAndroid = /Android/i.test(navigator.userAgent);
     let currentGifUrl = null;
-    const showToast = m => {
+    const showToast = (msg) => {
+      if (isAndroid) return;
       const t = document.getElementById("toast");
-      t.textContent = m;
+      t.textContent = msg;
       t.classList.add("show");
       setTimeout(() => t.classList.remove("show"), 2000);
     };
-    const showModal = url => {
-      currentGifUrl = url;
-      document.getElementById("modal").style.display = "flex";
+    const showModal = (url) => { currentGifUrl = url; document.getElementById("modal").style.display = "flex"; };
+    const hideModal = () => { document.getElementById("modal").style.display = "none"; currentGifUrl = null; };
+    const copyGIF = async (url) => {
+      try { await navigator.clipboard.writeText(url); showToast("لینک کپی شد!"); }
+      catch { showToast("کپی نشد!"); }
     };
-    const hideModal = () => {
-      document.getElementById("modal").style.display = "none";
-      currentGifUrl = null;
-    };
-    const copyGIF = async u => {
-      try {
-        await navigator.clipboard.writeText(u);
-        showToast("لینک کپی شد!");
-      } catch {
-        showToast("کپی نشد!");
-      }
-    };
-    const downloadGIF = u => {
+    const downloadGIF = (url) => {
       const a = document.createElement("a");
-      a.href = u;
-      a.download = u.split("/").pop();
-      document.body.append(a);
-      a.click();
-      a.remove();
+      a.href = url;
+      a.download = url.split("/").pop();
+      document.body.append(a); a.click(); a.remove();
       showToast("دانلود آغاز شد!");
     };
-    async function loadGIFs() {
+    const loadGIFs = async () => {
       try {
-        const { gifs } = await (await fetch("https://good-night-database.robonamari.com/database.json")).json();
-        const c = document.querySelector(".container");
-        gifs.forEach((u, i) => {
-          const d = document.createElement("div");
-          d.className = "gif-card";
+        const res = await fetch("https://good-night-database.robonamari.com/database.json");
+        const { gifs } = await res.json();
+        const container = document.querySelector(".container");
+        gifs.forEach((url, i) => {
+          const card = document.createElement("div");
+          card.className = "gif-card";
           const img = document.createElement("img");
-          img.src = u;
+          img.src = url;
           img.alt = "GIF";
-          i === 0 ? (img.loading = "eager", img.decoding = "async", img.setAttribute("fetchpriority", "high")) : img.loading = "lazy";
-          d.onclick = () => showModal(u);
-          d.append(img);
-          c.append(d);
+          if (i === 0) { img.loading = "eager"; img.decoding = "async"; img.setAttribute("fetchpriority", "high"); }
+          else img.loading = "lazy";
+          card.addEventListener("click", () => showModal(url), { passive: true });
+          card.appendChild(img);
+          container.appendChild(card);
         });
       } catch (e) {
         console.error(e);
         showToast("خطا در بارگذاری گیف‌ها");
       }
-    }
+    };
     document.addEventListener("DOMContentLoaded", () => {
+      loadGIFs();
       document.getElementById("closeModal").onclick = hideModal;
       document.getElementById("copyBtn").onclick = () => { if (currentGifUrl) copyGIF(currentGifUrl); hideModal(); };
       document.getElementById("downloadBtn").onclick = () => { if (currentGifUrl) downloadGIF(currentGifUrl); hideModal(); };
     });
-    loadGIFs();
     if (typeof navigator.serviceWorker !== "undefined") {
       navigator.serviceWorker.register("/sw.js")
     }

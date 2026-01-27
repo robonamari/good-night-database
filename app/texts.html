@@ -180,33 +180,40 @@
   </div>
   <div class="toast" id="toast">متن کپی شد!</div>
   <script>
-    async function loadTexts() {
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const showToast = (msg) => {
+      if (isAndroid) return;
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2000);
+    };
+    const copyText = async (text) => {
       try {
-        const { texts } = await (await fetch("https://good-night-database.robonamari.com/database.json")).json();
-        const c = document.querySelector(".container");
-        texts.forEach(t => {
-          const d = document.createElement("div");
-          d.className = "card";
-          d.textContent = t;
-          d.onclick = () => copyText(t);
-          c.appendChild(d);
+        await navigator.clipboard.writeText(text);
+        showToast("متن کپی شد!");
+      } catch {
+        showToast("کپی نشد!");
+      }
+    };
+    const loadTexts = async () => {
+      try {
+        const res = await fetch("https://good-night-database.robonamari.com/database.json");
+        const data = await res.json();
+        const container = document.querySelector(".container");
+        data.texts.forEach((text) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.textContent = text;
+          card.addEventListener("click", () => copyText(text), { passive: true });
+          container.appendChild(card);
         });
       } catch (e) {
         console.error(e);
         showToast("خطا در بارگذاری متن‌ها");
       }
-    }
-    const copyText = t =>
-      navigator.clipboard.writeText(t)
-        .then(() => showToast("متن کپی شد!"))
-        .catch(() => showToast("کپی نشد!"));
-    const showToast = m => {
-      const t = document.getElementById("toast");
-      t.textContent = m;
-      t.classList.add("show");
-      setTimeout(() => t.classList.remove("show"), 2000);
     };
-    loadTexts();
+    document.addEventListener("DOMContentLoaded", loadTexts);
     if (typeof navigator.serviceWorker !== "undefined") {
       navigator.serviceWorker.register("/sw.js")
     }
