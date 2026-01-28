@@ -94,26 +94,6 @@
       border-radius: 12px;
     }
 
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, #00ffff, #ff00ff);
-      color: #0d001e;
-      padding: 0.75rem 1.25rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 9999;
-      box-shadow: 0 0 15px #00eaff88;
-    }
-
-    .toast.show {
-      opacity: 1;
-    }
-
     @keyframes cyberTwinkle {
 
       0%,
@@ -208,29 +188,32 @@
         لینک</button> <br> <button id="closeModal">انصراف</button>
     </div>
   </div>
-  <div class="toast" id="toast">لینک کپی شد!</div>
   <script>
     const isAndroid = /Android/i.test(navigator.userAgent);
     let currentGifUrl = null;
-    const showToast = (msg) => {
+    const showMessage = async (msg) => {
       if (isAndroid) return;
-      const t = document.getElementById("toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      setTimeout(() => t.classList.remove("show"), 2000);
+      if (Notification.permission === "default") {
+        const permission = await Notification.requestPermission();
+        if (permission !== "granted") return;
+      }
+      if (Notification.permission === "granted") {
+        const notif = new Notification(msg);
+        setTimeout(() => notif.close(), 3000);
+      }
     };
     const showModal = (url) => { currentGifUrl = url; document.getElementById("modal").style.display = "flex"; };
     const hideModal = () => { document.getElementById("modal").style.display = "none"; currentGifUrl = null; };
     const copyGIF = async (url) => {
-      try { await navigator.clipboard.writeText(url); showToast("لینک کپی شد!"); }
-      catch { showToast("کپی نشد!"); }
+      try { await navigator.clipboard.writeText(url); showMessage("لینک کپی شد!"); }
+      catch { showMessage("کپی نشد!"); }
     };
     const downloadGIF = (url) => {
       const a = document.createElement("a");
       a.href = url;
       a.download = url.split("/").pop();
       document.body.append(a); a.click(); a.remove();
-      showToast("دانلود آغاز شد!");
+      showMessage("دانلود آغاز شد!");
     };
     const loadGIFs = async () => {
       try {
@@ -251,7 +234,7 @@
         });
       } catch (e) {
         console.error(e);
-        showToast("خطا در بارگذاری گیف‌ها");
+        showMessage("خطا در بارگذاری گیف‌ها");
       }
     };
     document.addEventListener("DOMContentLoaded", () => {

@@ -114,26 +114,6 @@
       animation: pulseNeon 4s infinite ease-in-out;
     }
 
-    .toast {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(90deg, #00ffff, #ff00ff);
-      color: #0d001e;
-      padding: 0.75rem 1.25rem;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 9999;
-      box-shadow: 0 0 15px #00eaff88;
-    }
-
-    .toast.show {
-      opacity: 1;
-    }
-
     @keyframes cyberTwinkle {
 
       0%,
@@ -178,22 +158,25 @@
   <div class="container">
     <div class="notice">برای کپی روی هر متن یکبار کلیک کنید.</div>
   </div>
-  <div class="toast" id="toast">متن کپی شد!</div>
   <script>
     const isAndroid = /Android/i.test(navigator.userAgent);
-    const showToast = (msg) => {
+    const showMessage = async (msg) => {
       if (isAndroid) return;
-      const t = document.getElementById("toast");
-      t.textContent = msg;
-      t.classList.add("show");
-      setTimeout(() => t.classList.remove("show"), 2000);
+      if (Notification.permission === "default") {
+        const permission = await Notification.requestPermission();
+        if (permission !== "granted") return;
+      }
+      if (Notification.permission === "granted") {
+        const notif = new Notification(msg);
+        setTimeout(() => notif.close(), 3000);
+      }
     };
     const copyText = async (text) => {
       try {
         await navigator.clipboard.writeText(text);
-        showToast("متن کپی شد!");
+        showMessage("متن کپی شد!");
       } catch {
-        showToast("کپی نشد!");
+        showMessage("کپی نشد!");
       }
     };
     const loadTexts = async () => {
@@ -210,7 +193,7 @@
         });
       } catch (e) {
         console.error(e);
-        showToast("خطا در بارگذاری متن‌ها");
+        showMessage("خطا در بارگذاری متن‌ها");
       }
     };
     document.addEventListener("DOMContentLoaded", loadTexts);
