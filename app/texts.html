@@ -20,8 +20,6 @@
   <link rel="canonical" href="https://good-night-database.robonamari.com/app/texts">
   <link rel="icon" href="https://good-night-database.robonamari.com/favicon.ico" type="image/x-icon">
   <link rel="manifest" href="/manifest.json">
-  <link rel="preload" href="https://good-night-database.robonamari.com/database.json" as="fetch" type="application/json"
-    crossorigin>
   <style>
     body {
       margin: 0;
@@ -181,7 +179,7 @@
     };
     const loadTexts = async () => {
       try {
-        const res = await fetch("https://good-night-database.robonamari.com/database.json");
+        const res = await fetch("../../database.json");
         const data = await res.json();
         const container = document.querySelector(".container");
         data.texts.forEach((text) => {
