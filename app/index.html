@@ -53,7 +53,7 @@
       justify-content: center;
       min-height: 100vh;
       overflow: hidden;
-      position: relative;
+      position: relative
     }
 
     body::before {
@@ -69,13 +69,13 @@
       background-repeat: repeat;
       animation: twinkle 12s linear infinite;
       z-index: -1;
-      opacity: 0.4;
+      opacity: 0.4
     }
 
     h1 {
       font-size: 2rem;
       margin-bottom: 2rem;
-      text-shadow: 0 0 10px #00ffff88;
+      text-shadow: 0 0 10px #00ffff88
     }
 
     .menu {
@@ -84,7 +84,7 @@
       gap: 1.2rem;
       width: 90%;
       max-width: 700px;
-      padding: 1rem;
+      padding: 1rem
     }
 
     .menu a {
@@ -100,12 +100,12 @@
       text-align: center;
       transition: transform 0.25s ease, box-shadow 0.3s ease;
       box-shadow: 0 0 18px #00ffff33, 0 0 25px #ff00ff33;
-      position: relative;
+      position: relative
     }
 
     .menu a:hover {
       transform: scale(1.06);
-      box-shadow: 0 0 35px #00ffffaa, 0 0 40px #ff00ffaa;
+      box-shadow: 0 0 35px #00ffffaa, 0 0 40px #ff00ffaa
     }
 
     .menu a::before {
@@ -113,29 +113,29 @@
       position: absolute;
       left: 16px;
       top: 16px;
-      color: #00ffffaa;
+      color: #00ffffaa
     }
 
     @keyframes twinkle {
 
       0%,
       100% {
-        opacity: 0.4;
+        opacity: 0.4
       }
 
       50% {
-        opacity: 0.15;
+        opacity: 0.15
       }
     }
 
     @media (max-width: 480px) {
       h1 {
-        font-size: 1.5rem;
+        font-size: 1.5rem
       }
 
       .menu a {
         font-size: 1rem;
-        padding: 1rem;
+        padding: 1rem
       }
     }
   </style>
@@ -150,11 +150,11 @@
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      document.getElementById("installBtn").style.display = "inline-block";
+      document.getElementById("installBtn").style.display = "inline-block"
     });
     document.getElementById("installBtn").addEventListener("click", () => {
       if (deferredPrompt) {
-        deferredPrompt.prompt();
+        deferredPrompt.prompt()
       }
     });
     if (typeof navigator.serviceWorker !== "undefined") {

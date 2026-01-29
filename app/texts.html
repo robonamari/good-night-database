@@ -31,7 +31,7 @@
       color: #e0e0ff;
       overflow-x: hidden;
       min-height: 100vh;
-      position: relative;
+      position: relative
     }
 
     body::before {
@@ -49,7 +49,7 @@
       background-size: 220px 220px;
       animation: cyberTwinkle 12s infinite linear;
       z-index: -1;
-      opacity: 0.5;
+      opacity: 0.5
     }
 
     .notice {
@@ -62,7 +62,7 @@
       margin: 1.5rem auto;
       max-width: 600px;
       text-align: center;
-      box-shadow: 0 0 25px #ff00f7aa, 0 0 12px #00eaff99;
+      box-shadow: 0 0 25px #ff00f7aa, 0 0 12px #00eaff99
     }
 
     .card {
@@ -80,16 +80,16 @@
       transition: transform 0.25s ease, box-shadow 0.3s ease;
       color: #ffffffdd;
       position: relative;
-      overflow: hidden;
+      overflow: hidden
     }
 
     .card:hover {
       transform: scale(1.04);
-      box-shadow: 0 0 40px #00ffffaa, 0 0 50px #ff00ffaa;
+      box-shadow: 0 0 40px #00ffffaa, 0 0 50px #ff00ffaa
     }
 
     .card:active {
-      transform: scale(0.97);
+      transform: scale(0.97)
     }
 
     .card::before {
@@ -100,7 +100,7 @@
       font-size: 2rem;
       color: #00eaff;
       opacity: 0.4;
-      animation: pulseNeon 3s infinite ease-in-out;
+      animation: pulseNeon 3s infinite ease-in-out
     }
 
     .card::after {
@@ -111,18 +111,18 @@
       font-size: 1.8rem;
       color: #ff00ff;
       opacity: 0.4;
-      animation: pulseNeon 4s infinite ease-in-out;
+      animation: pulseNeon 4s infinite ease-in-out
     }
 
     @keyframes cyberTwinkle {
 
       0%,
       100% {
-        opacity: 0.6;
+        opacity: 0.6
       }
 
       50% {
-        opacity: 0.2;
+        opacity: 0.2
       }
     }
 
@@ -131,24 +131,24 @@
       0%,
       100% {
         transform: scale(1);
-        opacity: 0.4;
+        opacity: 0.4
       }
 
       50% {
         transform: scale(1.5);
-        opacity: 1;
+        opacity: 1
       }
     }
 
     @media (max-width: 480px) {
       .notice {
         font-size: 0.95rem;
-        padding: 0.7rem 1rem;
+        padding: 0.7rem 1rem
       }
 
       .card {
         font-size: 1.05rem;
-        padding: 1rem;
+        padding: 1rem
       }
     }
   </style>
@@ -164,19 +164,19 @@
       if (isAndroid) return;
       if (Notification.permission === "default") {
         const permission = await Notification.requestPermission();
-        if (permission !== "granted") return;
+        if (permission !== "granted") return
       }
       if (Notification.permission === "granted") {
         const notif = new Notification(msg);
-        setTimeout(() => notif.close(), 3000);
+        setTimeout(() => notif.close(), 3000)
       }
     };
     const copyText = async (text) => {
       try {
         await navigator.clipboard.writeText(text);
-        showMessage("متن کپی شد!");
+        showMessage("متن کپی شد!")
       } catch {
-        showMessage("کپی نشد!");
+        showMessage("کپی نشد!")
       }
     };
     const loadTexts = async () => {
@@ -189,11 +189,11 @@
           card.className = "card";
           card.textContent = text;
           card.addEventListener("click", () => copyText(text), { passive: true });
-          container.appendChild(card);
-        });
+          container.appendChild(card)
+        })
       } catch (e) {
         console.error(e);
-        showMessage("خطا در بارگذاری متن‌ها");
+        showMessage("خطا در بارگذاری متن‌ها")
       }
     };
     document.addEventListener("DOMContentLoaded", loadTexts);

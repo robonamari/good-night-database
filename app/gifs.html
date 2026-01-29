@@ -32,7 +32,7 @@
       color: #e0e0ff;
       overflow-x: hidden;
       min-height: 100vh;
-      position: relative;
+      position: relative
     }
 
     body::before {
@@ -50,7 +50,7 @@
       background-size: 220px 220px;
       animation: cyberTwinkle 12s infinite linear;
       z-index: -1;
-      opacity: 0.5;
+      opacity: 0.5
     }
 
     .notice {
@@ -63,7 +63,7 @@
       margin: 1.5rem auto;
       max-width: 600px;
       text-align: center;
-      box-shadow: 0 0 25px #ff00f7aa, 0 0 12px #00eaff99;
+      box-shadow: 0 0 25px #ff00f7aa, 0 0 12px #00eaff99
     }
 
     .gif-card {
@@ -81,40 +81,40 @@
       overflow: hidden;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: center
     }
 
     .gif-card:hover {
       transform: scale(1.04);
-      box-shadow: 0 0 35px #00ffffaa, 0 0 40px #ff00ffaa;
+      box-shadow: 0 0 35px #00ffffaa, 0 0 40px #ff00ffaa
     }
 
     .gif-card img {
       max-width: 100%;
-      border-radius: 12px;
+      border-radius: 12px
     }
 
     @keyframes cyberTwinkle {
 
       0%,
       100% {
-        opacity: 0.6;
+        opacity: 0.6
       }
 
       50% {
-        opacity: 0.2;
+        opacity: 0.2
       }
     }
 
     @media (max-width: 480px) {
       .notice {
         font-size: 0.95rem;
-        padding: 0.7rem 1rem;
+        padding: 0.7rem 1rem
       }
 
       .gif-card {
         max-width: 90%;
-        margin: 1rem auto;
+        margin: 1rem auto
       }
     }
 
@@ -129,7 +129,7 @@
       align-items: center;
       justify-content: center;
       z-index: 10000;
-      direction: rtl;
+      direction: rtl
     }
 
     #modalContent {
@@ -139,11 +139,11 @@
       max-width: 320px;
       text-align: center;
       color: #e0e0ff;
-      font-family: Shabnam;
+      font-family: Shabnam
     }
 
     #modalContent p {
-      margin-bottom: 20px;
+      margin-bottom: 20px
     }
 
     #modalContent button {
@@ -154,17 +154,17 @@
       cursor: pointer;
       font-weight: bold;
       font-family: Shabnam;
-      font-size: 1rem;
+      font-size: 1rem
     }
 
     #downloadBtn {
       background-color: #00ffff;
-      color: #12001f;
+      color: #12001f
     }
 
     #copyBtn {
       background-color: #ff00ff;
-      color: #12001f;
+      color: #12001f
     }
 
     #closeModal {
@@ -173,7 +173,7 @@
       border: none;
       color: #e0e0ff;
       cursor: pointer;
-      font-size: 0.9rem;
+      font-size: 0.9rem
     }
   </style>
 </head>
@@ -195,11 +195,11 @@
       if (isAndroid) return;
       if (Notification.permission === "default") {
         const permission = await Notification.requestPermission();
-        if (permission !== "granted") return;
+        if (permission !== "granted") return
       }
       if (Notification.permission === "granted") {
         const notif = new Notification(msg);
-        setTimeout(() => notif.close(), 3000);
+        setTimeout(() => notif.close(), 3000)
       }
     };
     const showModal = (url) => { currentGifUrl = url; document.getElementById("modal").style.display = "flex"; };
@@ -213,7 +213,7 @@
       a.href = url;
       a.download = url.split("/").pop();
       document.body.append(a); a.click(); a.remove();
-      showMessage("دانلود آغاز شد!");
+      showMessage("دانلود آغاز شد!")
     };
     const loadGIFs = async () => {
       try {
@@ -230,18 +230,18 @@
           else img.loading = "lazy";
           card.addEventListener("click", () => showModal(url), { passive: true });
           card.appendChild(img);
-          container.appendChild(card);
-        });
+          container.appendChild(card)
+        })
       } catch (e) {
         console.error(e);
-        showMessage("خطا در بارگذاری گیف‌ها");
+        showMessage("خطا در بارگذاری گیف‌ها")
       }
     };
     document.addEventListener("DOMContentLoaded", () => {
       loadGIFs();
       document.getElementById("closeModal").onclick = hideModal;
       document.getElementById("copyBtn").onclick = () => { if (currentGifUrl) copyGIF(currentGifUrl); hideModal(); };
-      document.getElementById("downloadBtn").onclick = () => { if (currentGifUrl) downloadGIF(currentGifUrl); hideModal(); };
+      document.getElementById("downloadBtn").onclick = () => { if (currentGifUrl) downloadGIF(currentGifUrl); hideModal(); }
     });
     if (typeof navigator.serviceWorker !== "undefined") {
       navigator.serviceWorker.register("/sw.js")
