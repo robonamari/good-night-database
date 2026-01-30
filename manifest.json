@@ -1393,14 +1393,14 @@
   ],
   "screenshots": [
     {
-      "src": ".github/banner.png",
-      "sizes": "1056x594",
+      "src": "content/screenshot/windows/home.png",
+      "sizes": "1920x954",
       "type": "image/png",
       "platform": "windows"
     },
     {
       "src": "content/screenshot/android/home.png",
-      "sizes": "432x768",
+      "sizes": "468x832",
       "type": "image/png",
       "platform": "android"
     }
