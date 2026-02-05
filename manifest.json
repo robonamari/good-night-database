@@ -1394,7 +1394,7 @@
   "screenshots": [
     {
       "src": "content/screenshot/windows/home.png",
-      "sizes": "1920x954",
+      "sizes": "1912x954",
       "type": "image/png",
       "platform": "windows"
     },
