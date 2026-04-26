@@ -3,7 +3,7 @@ name: Auto Update Stats Tables
 on:
   push:
     paths:
-      - "database.json"
+      - "public/database.json"
 
 permissions:
   contents: write
@@ -14,13 +14,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-      - name: Extract stats from database.json
+      - name: Extract stats from public/database.json
         id: stats
         run: |
-          pic=$(jq '.pictures | length' database.json)
-          vid=$(jq '.videos | length' database.json)
-          txt=$(jq '.texts | length' database.json)
-          gif=$(jq '.gifs | length' database.json)
+          pic=$(jq '.pictures | length' public/database.json)
+          vid=$(jq '.videos | length' public/database.json)
+          txt=$(jq '.texts | length' public/database.json)
+          gif=$(jq '.gifs | length' public/database.json)
           total=$((pic + vid + txt + gif))
           echo "::set-output name=pic::$pic"
           echo "::set-output name=vid::$vid"
@@ -65,7 +65,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet; then
             git add .
-            git commit -m "🔄 Auto-update Markdown tables from database.json"
+            git commit -m "🔄 Auto-update Markdown tables from public/database.json"
             git push
           else
             echo "No changes detected"
