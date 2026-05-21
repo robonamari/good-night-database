@@ -1,8 +1,9 @@
 {
   "name": "good-night-database",
-  "compatibility_date": "2026-02-24",
+  "compatibility_date": "2026-05-21",
   "minify": true,
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "not_found_handling": "404-page"
   }
 }
