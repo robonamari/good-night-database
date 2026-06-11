@@ -6,9 +6,9 @@ workbox.routing.registerRoute(
   ({
     request
   }) =>
-    request.destination === "document" ||
-    request.destination === "script" ||
-    request.destination === "style",
+    url.pathname === "/app/" ||
+    url.pathname === "/app/gifs" ||
+    url.pathname === "/app/texts",
   new workbox.strategies.CacheFirst({
     cacheName: CACHE
   })
