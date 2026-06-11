@@ -1,25 +1,22 @@
-const CACHE = "offline";
-const urlsToCache = [
-  "/app/gifs",
-  "/app/",
-  "/app/texts"
-];
+const CACHE = "app-shell-v1";
+
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js");
-self.addEventListener("message", (event) => {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting()
-  }
-});
+
+workbox.routing.registerRoute(
+  ({
+    request
+  }) =>
+    request.destination === "document" ||
+    request.destination === "script" ||
+    request.destination === "style",
+  new workbox.strategies.CacheFirst({
+    cacheName: CACHE
+  })
+);
+
 workbox.routing.registerRoute(
   ({
     url
-  }) => urlsToCache.includes(url.pathname),
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: CACHE,
-    plugins: [
-      new workbox.expiration.ExpirationPlugin({
-        maxAgeSeconds: 7 * 24 * 60 * 60
-      }),
-    ],
-  })
+  }) => url.pathname.includes("database.json"),
+  new workbox.strategies.NetworkOnly()
 );
