@@ -4,7 +4,7 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox
 
 workbox.routing.registerRoute(
   ({
-    request
+    url
   }) =>
     url.pathname === "/app/" ||
     url.pathname === "/app/gifs" ||
