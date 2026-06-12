@@ -146,20 +146,23 @@
   <h1>به night melodies خوش آمدید</h1>
   <div class="menu">
     <a href="texts">متن‌ها</a>
-    <a href="#" id="installBtn" style="display:none;">نصب وب اپلیکیشن</a>
+    <a href="#" id="installBtn" hidden>نصب وب اپلیکیشن</a>
     <a href="gifs">گیف‌ها</a>
   </div>
   <script>
-    let deferredPrompt;
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      document.getElementById("installBtn").style.display = "inline-block"
+    const installButton = document.getElementById("installBtn");
+    let installPromptEvent;
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+      installPromptEvent = event;
+      installButton.hidden = false;
     });
-    document.getElementById("installBtn").addEventListener("click", () => {
-      if (deferredPrompt) {
-        deferredPrompt.prompt()
-      }
+    installButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      installPromptEvent.prompt();
+    });
+    window.addEventListener("appinstalled", () => {
+      installButton.hidden = true;
     });
     if (typeof navigator.serviceWorker !== "undefined") {
       navigator.serviceWorker.register("/sw.js")
