@@ -242,9 +242,6 @@
       document.getElementById("copyBtn").onclick = () => { if (currentGifUrl) copyGIF(currentGifUrl); hideModal(); };
       document.getElementById("downloadBtn").onclick = () => { if (currentGifUrl) downloadGIF(currentGifUrl); hideModal(); }
     });
-    if (typeof navigator.serviceWorker !== "undefined") {
-      navigator.serviceWorker.register("/sw.js")
-    }
   </script>
 </body>
 
