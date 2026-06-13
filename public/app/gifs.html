@@ -183,8 +183,11 @@
   </div>
   <div id="modal">
     <div id="modalContent">
-      <p>چه کاری می‌خواهید انجام دهید؟</p> <button id="downloadBtn">دانلود</button> <button id="copyBtn">کپی
-        لینک</button> <br> <button id="closeModal">انصراف</button>
+      <p>چه کاری می‌خواهید انجام دهید؟</p>
+      <button id="downloadBtn">دانلود</button>
+      <button id="copyBtn">کپی لینک</button>
+      <br>
+      <button id="closeModal">انصراف</button>
     </div>
   </div>
   <script>
@@ -201,23 +204,37 @@
         setTimeout(() => notif.close(), 3000)
       }
     };
-    const showModal = (url) => { currentGifUrl = url; document.getElementById("modal").style.display = "flex"; };
-    const hideModal = () => { document.getElementById("modal").style.display = "none"; currentGifUrl = null; };
+    const showModal = (url) => {
+      currentGifUrl = url;
+      document.getElementById("modal").style.display = "flex";
+    };
+    const hideModal = () => {
+      document.getElementById("modal").style.display = "none";
+      currentGifUrl = null;
+    };
     const copyGIF = async (url) => {
-      try { await navigator.clipboard.writeText(url); showMessage("لینک کپی شد!"); }
-      catch { showMessage("کپی نشد!"); }
+      try {
+        await navigator.clipboard.writeText(url);
+        showMessage("لینک کپی شد!");
+      } catch {
+        showMessage("کپی نشد!");
+      }
     };
     const downloadGIF = (url) => {
       const a = document.createElement("a");
       a.href = url;
       a.download = url.split("/").pop();
-      document.body.append(a); a.click(); a.remove();
+      document.body.append(a);
+      a.click();
+      a.remove();
       showMessage("دانلود آغاز شد!")
     };
     const loadGIFs = async () => {
       try {
         const res = await fetch("../../database.json");
-        const { gifs } = await res.json();
+        const {
+          gifs
+        } = await res.json();
         const container = document.querySelector(".container");
         gifs.forEach((url, i) => {
           const card = document.createElement("div");
@@ -225,9 +242,14 @@
           const img = document.createElement("img");
           img.src = url;
           img.alt = "GIF";
-          if (i === 0) { img.loading = "eager"; img.decoding = "async"; img.setAttribute("fetchpriority", "high"); }
-          else img.loading = "lazy";
-          card.addEventListener("click", () => showModal(url), { passive: true });
+          if (i === 0) {
+            img.loading = "eager";
+            img.decoding = "async";
+            img.setAttribute("fetchpriority", "high");
+          } else img.loading = "lazy";
+          card.addEventListener("click", () => showModal(url), {
+            passive: true
+          });
           card.appendChild(img);
           container.appendChild(card)
         })
@@ -239,8 +261,14 @@
     document.addEventListener("DOMContentLoaded", () => {
       loadGIFs();
       document.getElementById("closeModal").onclick = hideModal;
-      document.getElementById("copyBtn").onclick = () => { if (currentGifUrl) copyGIF(currentGifUrl); hideModal(); };
-      document.getElementById("downloadBtn").onclick = () => { if (currentGifUrl) downloadGIF(currentGifUrl); hideModal(); }
+      document.getElementById("copyBtn").onclick = () => {
+        if (currentGifUrl) copyGIF(currentGifUrl);
+        hideModal();
+      };
+      document.getElementById("downloadBtn").onclick = () => {
+        if (currentGifUrl) downloadGIF(currentGifUrl);
+        hideModal();
+      }
     });
   </script>
 </body>

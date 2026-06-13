@@ -1,5 +1,4 @@
 {
-  "manifest_version": 2,
   "name": "پیامک شب بخیر",
   "short_name": "پیامک شب بخیر",
   "id": "com.robonamari.night_melodies_app",
@@ -1411,6 +1410,5 @@
       "auto"
     ]
   },
-  "handle_links": "preferred",
-  "version": "1.2.0"
+  "handle_links": "preferred"
 }
