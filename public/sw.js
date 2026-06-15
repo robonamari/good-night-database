@@ -1,4 +1,4 @@
-const VERSION = "v2026-06-13";
+const VERSION = "v2026-06-15";
 
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/7.4.1/workbox-sw.js");
 
