@@ -1,100 +1,173 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="rtl" lang="fa">
 
 <head>
   <meta charset="UTF-8">
-  <title>Good Night Database</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="title" content="Good Night Database">
-  <meta name="description" content="The text of Iranian good night in json file">
-  <meta name="keywords" content="api, night, json, database, link-aggregator">
+  <title>night melodies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="title" content="night melodies">
+  <meta name="description"
+    content="در night melodies مجموعه‌ای آرامش‌بخش از متن‌های شبانه، گیف‌های خاص و دانلودهای کاربردی را تجربه کنید. با یک کلیک، دنیای شبانه را کشف کنید!">
+  <meta name="keywords" content="night melodies, night quotes, gif collection, sleep database, relaxing downloads">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#6a00ff">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://good-night-database.robonamari.com">
-  <meta property="og:title" content="Good Night Database">
-  <meta property="og:description" content="The text of Iranian good night in json file">
+  <meta property="og:url" content="https://good-night-database.robonamari.com/">
+  <meta property="og:title" content="night melodies">
+  <meta property="og:description"
+    content="در night melodies مجموعه‌ای آرامش‌بخش از متن‌های شبانه، گیف‌های خاص و دانلودهای کاربردی را تجربه کنید. با یک کلیک، دنیای شبانه را کشف کنید!">
   <meta property="og:image" content="https://good-night-database.robonamari.com/favicon.ico">
-  <meta property="og:site_name" content="Good Night Database">
-  <link rel="canonical" href="https://good-night-database.robonamari.com">
+  <meta property="og:site_name" content="night melodies">
+  <link rel="canonical" href="https://good-night-database.robonamari.com/">
   <link rel="icon" href="https://good-night-database.robonamari.com/favicon.ico" type="image/x-icon">
+  <link rel="manifest" href="/manifest.json">
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Good Night Database",
-      "url": "https://good-night-database.robonamari.com",
-      "description": "The text of Iranian good night in json file",
-      "inLanguage": "en",
-      "publisher": {
-        "@type": "Organization",
-        "name": "robonamari",
-        "url": "https://robonamari.com",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://robonamari.com/favicon.ico"
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "night melodies",
+        "url": "https://good-night-database.robonamari.com/",
+        "description": "در night melodies مجموعه‌ای آرامش‌بخش از متن‌های شبانه، گیف‌های خاص و دانلودهای کاربردی را تجربه کنید. با یک کلیک، دنیای شبانه را کشف کنید!",
+        "inLanguage": "fa",
+        "publisher": {
+          "@type": "Organization",
+          "name": "robonamari",
+          "url": "https://robonamari.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://robonamari.com/favicon.ico"
+          }
         }
       }
-    }
-  </script>
+    </script>
   <style>
     body {
-      font-family: Shabnam;
-      background-color: #f0f0f0;
       margin: 0;
       padding: 0;
-      height: 100vh;
+      background: linear-gradient(180deg, #090017 0%, #140031 50%, #05000f 100%);
+      font-family: Shabnam;
+      color: #e0e0ff;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      text-align: center
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+      user-select: none
     }
 
-    main {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1)
+    body::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(1px 1px at 20% 30%, #ffffff 70%, transparent),
+        radial-gradient(1px 1px at 75% 40%, #00ffff 70%, transparent),
+        radial-gradient(1px 1px at 50% 70%, #ff00e1 70%, transparent);
+      background-size: 220px 220px;
+      background-repeat: repeat;
+      animation: twinkle 12s linear infinite;
+      z-index: -1;
+      opacity: 0.4
     }
 
     h1 {
-      color: #333
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px #00ffff88
     }
 
-    p {
-      color: #666;
-      font-size: 18px;
-      line-height: 1.6
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      width: 90%;
+      max-width: 700px;
+      padding: 1rem
     }
 
-    a:hover {
-      text-decoration: underline
+    .menu a {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      text-decoration: none;
+      color: #ffffffdd;
+      padding: 1.4rem;
+      border-radius: 18px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 18px #00ffff33, 0 0 25px #ff00ff33;
+      position: relative
     }
 
-    .github-icon svg {
-      width: 30px;
-      height: 30px;
-      fill: #181717;
-      margin-top: 10px;
-      transition: fill 0.3s
+    .menu a:hover {
+      transform: scale(1.06);
+      box-shadow: 0 0 35px #00ffffaa, 0 0 40px #ff00ffaa
     }
 
-    .github-icon:hover svg {
-      fill: #007bff
+    .menu a::before {
+      content: "➤";
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      color: #00ffffaa
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: 0.4
+      }
+
+      50% {
+        opacity: 0.15
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem
+      }
+
+      .menu a {
+        font-size: 1rem;
+        padding: 1rem
+      }
     }
   </style>
 </head>
 
 <body>
-  <main>
-    <h1>Welcome!</h1>
-    <p>Welcome to my world! This is a place where you never get lost, unless you're looking to spy!</p> <a
-      href="https://github.com/robonamari/good-night-database" target="_blank" rel="noopener" class="github-icon"
-      title="GitHub Project"> <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd"
-          d="M12 .297C5.373.297 0 5.67 0 12.297c0 5.302 3.438 9.8 8.207 11.385.6.11.793-.26.793-.577v-2.023c-3.34.725-4.043-1.61-4.043-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.084-.729.084-.729 1.205.084 1.84 1.24 1.84 1.24 1.07 1.835 2.807 1.305 3.49.998.108-.776.418-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.123-.303-.535-1.524.116-3.176 0 0 1.008-.322 3.3 1.23a11.4 11.4 0 0 1 3.003-.404c1.02.005 2.045.137 3.003.404 2.29-1.552 3.295-1.23 3.295-1.23.653 1.652.24 2.873.118 3.176.77.84 1.232 1.91 1.232 3.22 0 4.61-2.804 5.626-5.476 5.92.43.37.81 1.102.81 2.385v3.53c0 .32.19.693.8.576C20.565 22.092 24 17.595 24 12.297 24 5.67 18.627.297 12 .297z">
-      </svg> </a>
-  </main>
+  <h1>به night melodies خوش آمدید</h1>
+  <div class="menu">
+    <a href="texts">متن‌ها</a>
+    <a href="#" id="installBtn" hidden>نصب وب اپلیکیشن</a>
+    <a href="gifs">گیف‌ها</a>
+  </div>
+  <script>
+    const installButton = document.getElementById("installBtn");
+    let installPromptEvent;
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+      installPromptEvent = event;
+      installButton.hidden = false;
+    });
+    installButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      installPromptEvent.prompt();
+    });
+    window.addEventListener("appinstalled", () => {
+      installButton.hidden = true;
+    });
+    if (typeof navigator.serviceWorker !== "undefined") {
+      navigator.serviceWorker.register("/sw.js")
+    }
+  </script>
 </body>
 
 </html>

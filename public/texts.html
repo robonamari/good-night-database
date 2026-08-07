@@ -11,13 +11,13 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#6a00ff">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://good-night-database.robonamari.com/app/texts">
+  <meta property="og:url" content="https://good-night-database.robonamari.com/texts">
   <meta property="og:title" content="متن‌های شبانه | night melodies">
   <meta property="og:description"
     content="گلچین متن‌های شبانه‌ی خاص برای آرامش، کپشن، استوری و اشتراک‌گذاری. کپی با یک کلیک.">
   <meta property="og:image" content="https://good-night-database.robonamari.com/favicon.ico">
   <meta property="og:site_name" content="night melodies">
-  <link rel="canonical" href="https://good-night-database.robonamari.com/app/texts">
+  <link rel="canonical" href="https://good-night-database.robonamari.com/texts">
   <link rel="icon" href="https://good-night-database.robonamari.com/favicon.ico" type="image/x-icon">
   <link rel="manifest" href="/manifest.json">
   <style>
@@ -180,7 +180,7 @@
     };
     const loadTexts = async () => {
       try {
-        const res = await fetch("../../database.json");
+        const res = await fetch("database.json");
         const data = await res.json();
         const container = document.querySelector(".container");
         data.texts.forEach((text) => {

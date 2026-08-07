@@ -1,11 +1,14 @@
-const VERSION = "v2026-06-16";
+const VERSION = "v2026-08-07";
 
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/7.4.1/workbox-sw.js");
 
 workbox.routing.registerRoute(
   ({
     url
-  }) => url.pathname.startsWith("/app/"),
+  }) =>
+    url.pathname === "/index.html" ||
+    url.pathname === "/gifs.html" ||
+    url.pathname === "/texts.html",
   new workbox.strategies.CacheFirst({
     cacheName: `app-shell-${VERSION}`,
   })
