@@ -1,43 +1,29 @@
-const VERSION = "v2026-08-07";
+const APP_SHELL_CACHE = "app-shell-v1";
+const ASSETS_CACHE = "assets-v1";
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/7.4.1/workbox-sw.js");
+self.addEventListener("fetch", (event) => {
+  const url = new URL(event.request.url);
+  if (url.pathname === "/assets/js/notification.js") {
+    event.respondWith(cacheFirst(event.request, APP_SHELL_CACHE));
+    return;
+  }
+  if (url.pathname.endsWith(".gif")) {
+    event.respondWith(cacheFirst(event.request, ASSETS_CACHE));
+  }
+});
 
-workbox.routing.registerRoute(
-  ({
-    url
-  }) =>
-    url.pathname === "/index.html" ||
-    url.pathname === "/gifs.html" ||
-    url.pathname === "/texts.html",
-  new workbox.strategies.CacheFirst({
-    cacheName: `app-shell-${VERSION}`,
-  })
-);
-
-workbox.routing.registerRoute(
-  ({
-    url
-  }) => url.pathname.includes("database.json"),
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: `app-data-${VERSION}`
-  })
-);
-
-workbox.routing.registerRoute(
-  ({
-    url
-  }) => url.pathname.endsWith(".gif"),
-  new workbox.strategies.CacheFirst({
-    cacheName: `gif-cache-${VERSION}`,
-    plugins: [
-      new workbox.expiration.ExpirationPlugin({
-        maxAgeSeconds: 7 * 24 * 60 * 60,
-        maxEntries: 100,
-        purgeOnQuotaError: true,
-      }),
-    ],
-  })
-);
+const cacheFirst = async (request, cacheName) => {
+  const cached = await caches.match(request);
+  if (cached) {
+    return cached;
+  }
+  const response = await fetch(request);
+  if (response.ok) {
+    const cache = await caches.open(cacheName);
+    await cache.put(request, response.clone());
+  }
+  return response;
+};
 
 self.addEventListener("install", () => {
   self.skipWaiting();
@@ -45,22 +31,16 @@ self.addEventListener("install", () => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    Promise.all([
-      self.clients.claim(),
-      caches.keys().then((keys) =>
-        Promise.all(
-          keys
-            .filter(
-              (key) =>
-                ![
-                  `app-shell-${VERSION}`,
-                  `app-data-${VERSION}`,
-                  `gif-cache-${VERSION}`,
-                ].includes(key)
-            )
-            .map((key) => caches.delete(key))
-        )
-      ),
-    ])
+    caches.keys().then((cacheNames) => {
+      return Promise.all(
+        cacheNames
+          .filter(
+            (cacheName) =>
+              cacheName !== APP_SHELL_CACHE &&
+              cacheName !== ASSETS_CACHE
+          )
+          .map((cacheName) => caches.delete(cacheName))
+      );
+    })
   );
 });
