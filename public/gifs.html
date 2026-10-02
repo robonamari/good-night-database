@@ -203,9 +203,9 @@
     const copyGIF = async (url) => {
       try {
         await navigator.clipboard.writeText(url);
-        showMessage("لینک کپی شد!");
+        showNotification("لینک کپی شد!");
       } catch {
-        showMessage("کپی نشد!");
+        showNotification("کپی نشد!");
       }
     };
     const downloadGIF = (url) => {
@@ -215,7 +215,7 @@
       document.body.append(a);
       a.click();
       a.remove();
-      showMessage("دانلود آغاز شد!")
+      showNotification("دانلود آغاز شد!")
     };
     const loadGIFs = async () => {
       try {
@@ -243,7 +243,7 @@
         })
       } catch (e) {
         console.error(e);
-        showMessage("خطا در بارگذاری گیف‌ها")
+        showNotification("خطا در بارگذاری گیف‌ها")
       }
     };
     document.addEventListener("DOMContentLoaded", () => {

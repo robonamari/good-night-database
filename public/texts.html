@@ -161,9 +161,9 @@
     const copyText = async (text) => {
       try {
         await navigator.clipboard.writeText(text);
-        showMessage("متن کپی شد!")
+        showNotification("متن کپی شد!")
       } catch {
-        showMessage("کپی نشد!")
+        showNotification("کپی نشد!")
       }
     };
     const loadTexts = async () => {
@@ -182,7 +182,7 @@
         })
       } catch (e) {
         console.error(e);
-        showMessage("خطا در بارگذاری متن‌ها")
+        showNotification("خطا در بارگذاری متن‌ها")
       }
     };
     document.addEventListener("DOMContentLoaded", loadTexts);
