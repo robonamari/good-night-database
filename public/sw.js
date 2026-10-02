@@ -4,8 +4,7 @@ const ASSETS_CACHE = "assets-v1";
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
   if (
-    url.pathname === "/assets/js/notification.js" ||
-    url.pathname === "/404.html"
+    url.pathname === "assets/js/notification.js"
   ) {
     event.respondWith(cacheFirst(event.request, APP_SHELL_CACHE));
     return;
@@ -28,7 +27,12 @@ const cacheFirst = async (request, cacheName) => {
   return response;
 };
 
-self.addEventListener("install", () => {
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(APP_SHELL_CACHE).then((cache) => {
+      return cache.add("404.html");
+    })
+  );
   self.skipWaiting();
 });
 
