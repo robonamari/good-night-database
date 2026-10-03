@@ -1,5 +1,5 @@
-const APP_SHELL_CACHE = "app-shell-v1";
-const ASSETS_CACHE = "assets-v1";
+const APP_SHELL_CACHE = "app-shell-v1.0.0";
+const ASSETS_CACHE = "assets-v1.0.0";
 
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
@@ -151,7 +151,10 @@ self.addEventListener("install", (event) => {
     caches.open(APP_SHELL_CACHE).then((cache) => {
       return cache.addAll([
         ...platformAssets,
-        "404.html",
+        "assets/css/common.css",
+        "assets/js/index.js",
+        "assets/js/gifs.js",
+        "assets/js/texts.js",
         "assets/js/notification.js",
       ]);
     })
