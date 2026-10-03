@@ -2,24 +2,23 @@ const APP_SHELL_CACHE = "app-shell-v1.0.0";
 const ASSETS_CACHE = "assets-v1.0.0";
 
 self.addEventListener("fetch", (event) => {
-  const url = new URL(event.request.url);
-  if (url.pathname.endsWith(".gif")) {
-    event.respondWith(cacheFirst(event.request, ASSETS_CACHE));
-  }
+  event.respondWith(
+    caches.match(event.request).then(async (cached) => {
+      if (cached) {
+        return cached;
+      }
+      const response = await fetch(event.request);
+      if (
+        new URL(event.request.url).pathname.endsWith(".gif") &&
+        response.ok
+      ) {
+        const cache = await caches.open(ASSETS_CACHE);
+        await cache.put(event.request, response.clone());
+      }
+      return response;
+    })
+  );
 });
-
-const cacheFirst = async (request, cacheName) => {
-  const cached = await caches.match(request);
-  if (cached) {
-    return cached;
-  }
-  const response = await fetch(request);
-  if (response.ok) {
-    const cache = await caches.open(cacheName);
-    await cache.put(request, response.clone());
-  }
-  return response;
-};
 
 self.addEventListener("install", (event) => {
   let platformAssets = [];
