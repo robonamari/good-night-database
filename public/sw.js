@@ -151,9 +151,9 @@ self.addEventListener("install", (event) => {
     caches.open(APP_SHELL_CACHE).then((cache) => {
       return cache.addAll([
         ...platformAssets,
-        "index.html",
-        "gifs.html",
-        "texts.html",
+        "/",
+        "gifs",
+        "texts",
         "assets/css/common.css",
         "assets/js/notification.js",
       ]);
