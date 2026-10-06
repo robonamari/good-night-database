@@ -138,7 +138,7 @@
   </div>
   <script>
     let currentGifUrl = null;
-    const showModal = (url) => {
+    const showModal = url => {
       currentGifUrl = url;
       document.getElementById("modal").style.display = "flex";
     };
@@ -146,7 +146,7 @@
       document.getElementById("modal").style.display = "none";
       currentGifUrl = null;
     };
-    const copyGIF = async (url) => {
+    const copyGIF = async url => {
       try {
         await navigator.clipboard.writeText(url);
         showNotification("لینک کپی شد!");
@@ -154,56 +154,55 @@
         showNotification("کپی نشد!");
       }
     };
-    const downloadGIF = (url) => {
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = url.split("/").pop();
-      document.body.append(a);
-      a.click();
-      a.remove();
-      showNotification("دانلود آغاز شد!")
+    const downloadGIF = url => {
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = url.split("/").pop();
+      document.body.append(link);
+      link.click();
+      link.remove();
+      showNotification("دانلود آغاز شد!");
     };
     const loadGIFs = async () => {
       try {
-        const res = await fetch("database.json");
         const {
           gifs
-        } = await res.json();
+        } = await (await fetch("database.json")).json();
         const container = document.querySelector(".container");
-        gifs.forEach((url, i) => {
+        const fragment = document.createDocumentFragment();
+        gifs.forEach((url, index) => {
           const card = document.createElement("div");
-          card.className = "gif-card";
           const img = document.createElement("img");
+          card.className = "gif-card";
           img.src = url;
           img.alt = "GIF";
-          if (i === 0) {
+          if (index === 0) {
             img.loading = "eager";
             img.decoding = "async";
-            img.setAttribute("fetchpriority", "high");
-          } else img.loading = "lazy";
-          card.addEventListener("click", () => showModal(url), {
-            passive: true
-          });
+            img.fetchPriority = "high";
+          } else {
+            img.loading = "lazy";
+          }
+          card.onclick = () => showModal(url);
           card.appendChild(img);
-          container.appendChild(card)
-        })
-      } catch (e) {
-        console.error(e);
-        showNotification("خطا در بارگذاری گیف‌ها")
+          fragment.appendChild(card);
+        });
+        container.appendChild(fragment);
+      } catch (error) {
+        console.error(error);
+        showNotification("خطا در بارگذاری گیف‌ها");
       }
     };
-    document.addEventListener("DOMContentLoaded", () => {
-      loadGIFs();
-      document.getElementById("closeModal").onclick = hideModal;
-      document.getElementById("copyBtn").onclick = () => {
-        if (currentGifUrl) copyGIF(currentGifUrl);
-        hideModal();
-      };
-      document.getElementById("downloadBtn").onclick = () => {
-        if (currentGifUrl) downloadGIF(currentGifUrl);
-        hideModal();
-      }
-    });
+    document.getElementById("closeModal").onclick = hideModal;
+    document.getElementById("copyBtn").onclick = () => {
+      if (currentGifUrl) copyGIF(currentGifUrl);
+      hideModal();
+    };
+    document.getElementById("downloadBtn").onclick = () => {
+      if (currentGifUrl) downloadGIF(currentGifUrl);
+      hideModal();
+    };
+    loadGIFs();
   </script>
   <script src="assets/js/notification.js" defer></script>
 </body>
