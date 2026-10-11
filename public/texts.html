@@ -3,20 +3,20 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>متن‌های شبانه | night melodies</title>
+  <title>متن شب بخیر | Night Melodies</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="title" content="متن‌های شبانه | night melodies">
-  <meta name="description" content="گلچین متن‌های شبانه‌ی خاص برای آرامش، کپشن، استوری و اشتراک‌گذاری. کپی با یک کلیک.">
-  <meta name="keywords" content="night melodies, متن شب, استوری شبانه, کپشن احساسی, متن برای شب">
+  <meta name="title" content="متن شب بخیر">
+  <meta name="description"
+    content="مجموعه‌ای از متن‌های زیبای شب بخیر برای استوری، کپشن و ارسال به عزیزان. متن دلخواهت را انتخاب کن و با یک کلیک کپی کن.">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="theme-color" content="#6a00ff">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://good-night-database.robonamari.com/texts">
-  <meta property="og:title" content="متن‌های شبانه | night melodies">
+  <meta property="og:title" content="متن شب بخیر">
   <meta property="og:description"
-    content="گلچین متن‌های شبانه‌ی خاص برای آرامش، کپشن، استوری و اشتراک‌گذاری. کپی با یک کلیک.">
+    content="مجموعه‌ای از متن‌های زیبای شب بخیر برای استوری، کپشن و ارسال به عزیزان. متن دلخواهت را انتخاب کن و با یک کلیک کپی کن.">
   <meta property="og:image" content="https://good-night-database.robonamari.com/favicon.ico">
-  <meta property="og:site_name" content="night melodies">
+  <meta property="og:site_name" content="Night Melodies">
   <link rel="canonical" href="https://good-night-database.robonamari.com/texts">
   <link rel="icon" href="https://good-night-database.robonamari.com/favicon.ico" type="image/x-icon">
   <link rel="manifest" href="manifest.json">
@@ -116,10 +116,7 @@
           const card = document.createElement("div");
           card.className = "card";
           card.textContent = text;
-          card.onclick = () =>
-            navigator.clipboard.writeText(text)
-              .then(() => showNotification("متن کپی شد!"))
-              .catch(() => showNotification("کپی نشد!"));
+          card.onclick = () => navigator.clipboard.writeText(text).then(() => showNotification("متن کپی شد!")).catch(() => showNotification("کپی نشد!"));
           fragment.appendChild(card);
         });
         container.appendChild(fragment);

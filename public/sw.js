@@ -1,4 +1,4 @@
-const APP_SHELL_CACHE = "app-shell-v1.1.0";
+const APP_SHELL_CACHE = "app-shell-v1.2.0";
 const ASSETS_CACHE = "assets-v1.0.0";
 
 self.addEventListener("fetch", (event) => {
