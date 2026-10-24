@@ -4,7 +4,7 @@ import requests  # pip install requests
 
 print(
     random.choice(
-        requests.get("https://good-night-database.robonamari.com/database.json").json()[
+        requests.get("https://good-night-database.robonamari.ir/database.json").json()[
             "texts"
         ]
     )
@@ -14,7 +14,7 @@ print(
 
 print(
     random.choice(
-        requests.get("https://good-night-database.robonamari.com/database.json").json()[
+        requests.get("https://good-night-database.robonamari.ir/database.json").json()[
             "gifs"
         ]
     )
