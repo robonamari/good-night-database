@@ -1,5 +1,5 @@
-const APP_SHELL_CACHE = "app-shell-v1.2.2";
-const ASSETS_CACHE = "assets-v1.0.1";
+const APP_SHELL_CACHE = "app-shell-v0.1.0";
+const ASSETS_CACHE = "assets-v0.1.0";
 
 self.addEventListener("fetch", (event) => {
   event.respondWith(
@@ -80,14 +80,53 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
+    caches.keys().then(async (cacheNames) => {
+      const prefixes = ["app-shell-", "assets-"];
+      const groups = prefixes.map((prefix) =>
+        cacheNames.filter((name) => name.startsWith(prefix)),
+      );
+      await Promise.all(
         cacheNames
-          .filter(
-            (cacheName) =>
-              cacheName !== APP_SHELL_CACHE && cacheName !== ASSETS_CACHE,
-          )
-          .map((cacheName) => caches.delete(cacheName)),
+          .filter((name) => !prefixes.some((prefix) => name.startsWith(prefix)))
+          .map((name) => caches.delete(name)),
+      );
+      await Promise.all(
+        groups.map(async (group, index) => {
+          const current = [APP_SHELL_CACHE, ASSETS_CACHE][index];
+          const currentCache = await caches.open(current);
+          await Promise.all(
+            group
+              .filter((name) => name !== current)
+              .map(async (name) => {
+                const previousCache = await caches.open(name);
+                await Promise.all(
+                  (await previousCache.keys()).map(async (request) => {
+                    const cached = await previousCache.match(request);
+                    const etag = cached?.headers.get("ETag");
+                    if (!etag) return;
+                    try {
+                      const response = await fetch(
+                        new Request(request, {
+                          headers: {
+                            "If-None-Match": etag,
+                          },
+                          cache: "no-cache",
+                        }),
+                      );
+                      if (response.status === 304) {
+                        await currentCache.put(request, cached);
+                      } else if (response.status === 200) {
+                        await currentCache.put(request, response);
+                      }
+                    } catch {
+                      return;
+                    }
+                  }),
+                );
+                await caches.delete(name);
+              }),
+          );
+        }),
       );
     }),
   );
