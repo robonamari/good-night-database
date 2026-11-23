@@ -19,6 +19,7 @@
   <link rel="canonical" href="https://good-night-database.robonamari.ir/">
   <link rel="icon" href="https://good-night-database.robonamari.ir/favicon.ico" type="image/x-icon">
   <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="assets/css/common.css">
   <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -40,35 +41,10 @@
     </script>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(180deg, #090017 0%, #140031 50%, #05000f 100%);
-      font-family: Shabnam;
-      color: #e0e0ff;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      overflow: hidden;
-      position: relative;
-      user-select: none
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background-image:
-        radial-gradient(1px 1px at 20% 30%, #ffffff 70%, transparent),
-        radial-gradient(1px 1px at 75% 40%, #00ffff 70%, transparent),
-        radial-gradient(1px 1px at 50% 70%, #ff00e1 70%, transparent);
-      background-size: 220px 220px;
-      background-repeat: repeat;
-      animation: twinkle 12s linear infinite;
-      z-index: -1;
-      opacity: 0.4
     }
 
     h1 {
@@ -88,24 +64,13 @@
 
     .menu a {
       -webkit-user-drag: none;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(12px);
       text-decoration: none;
       color: #ffffffdd;
       padding: 1.4rem;
-      border-radius: 18px;
       font-size: 1.1rem;
       font-weight: bold;
       text-align: center;
-      transition: transform 0.25s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 18px #00ffff33, 0 0 25px #ff00ff33;
       position: relative
-    }
-
-    .menu a:hover {
-      transform: scale(1.06);
-      box-shadow: 0 0 35px #00ffffaa, 0 0 40px #ff00ffaa
     }
 
     .menu a::before {
@@ -114,18 +79,6 @@
       left: 16px;
       top: 16px;
       color: #00ffffaa
-    }
-
-    @keyframes twinkle {
-
-      0%,
-      100% {
-        opacity: 0.4
-      }
-
-      50% {
-        opacity: 0.15
-      }
     }
 
     @media (max-width: 480px) {

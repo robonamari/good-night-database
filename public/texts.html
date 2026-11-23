@@ -22,27 +22,28 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="assets/css/common.css">
   <style>
+    .notice {
+      background: linear-gradient(to right, #00eaff, #ff00f7);
+      color: #12001f;
+      padding: 1rem 1.5rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 16px;
+      margin: 1.5rem auto;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 0 25px #ff00f7aa, 0 0 12px #00eaff99;
+    }
+
     .card {
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
       margin: 1.5rem auto;
       padding: 1.4rem;
       font-size: 1.2rem;
       line-height: 2;
       max-width: 600px;
-      border-radius: 22px;
-      box-shadow: 0 0 18px #00ffff55, 0 0 35px #ff00ff44;
       cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.3s ease;
       color: #ffffffdd;
-      position: relative;
       overflow: hidden
-    }
-
-    .card:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 40px #00ffffaa, 0 0 50px #ff00ffaa
     }
 
     .card:active {
@@ -112,7 +113,7 @@
         } = await response.json();
         const container = document.querySelector(".container");
         const fragment = document.createDocumentFragment();
-        texts.forEach(text => {
+        texts.forEach((text) => {
           const card = document.createElement("div");
           card.className = "card";
           card.textContent = text;

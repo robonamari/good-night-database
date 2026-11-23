@@ -22,27 +22,28 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="assets/css/common.css">
   <style>
+    .notice {
+      background: linear-gradient(to right, #00eaff, #ff00f7);
+      color: #12001f;
+      padding: 1rem 1.5rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 16px;
+      margin: 1.5rem auto;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 0 25px #ff00f7aa, 0 0 12px #00eaff99;
+    }
+
     .gif-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
       margin: 1.5rem auto;
       padding: 1rem;
       max-width: 400px;
-      border-radius: 18px;
-      box-shadow: 0 0 18px #00ffff55, 0 0 25px #ff00ff44;
       cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.3s ease;
-      position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center
-    }
-
-    .gif-card:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 35px #00ffffaa, 0 0 40px #ff00ffaa
     }
 
     .gif-card img {
@@ -63,34 +64,26 @@
     }
 
     #modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-      direction: rtl
-    }
-
-    #modalContent {
       background: #1a0033;
       padding: 20px;
+      border: none;
       border-radius: 15px;
       max-width: 320px;
       text-align: center;
       color: #e0e0ff;
-      font-family: Shabnam
+      font-family: Shabnam;
+      direction: rtl
     }
 
-    #modalContent p {
+    #modal::backdrop {
+      background: rgba(0, 0, 0, 0.7)
+    }
+
+    #modal p {
       margin-bottom: 20px
     }
 
-    #modalContent button {
+    #modal button {
       margin: 0 10px;
       padding: 10px 20px;
       border: none;
@@ -126,26 +119,28 @@
   <div class="container">
     <div class="notice">برای دانلود یا دریافت لینک، روی GIF کلیک کنید.</div>
   </div>
-  <div id="modal">
-    <div id="modalContent">
-      <p>چه کاری می‌خواهید انجام دهید؟</p>
-      <button id="downloadBtn">دانلود</button>
-      <button id="copyBtn">کپی لینک</button>
-      <br>
-      <button id="closeModal">انصراف</button>
-    </div>
-  </div>
+  <dialog id="modal">
+    <p>چه کاری می‌خواهید انجام دهید؟</p>
+    <button id="downloadBtn">دانلود</button>
+    <button id="copyBtn">کپی لینک</button>
+    <br>
+    <button id="closeModal" onclick="document.getElementById('modal').close()">انصراف</button>
+  </dialog>
   <script>
     let currentGifUrl = null;
-    const showModal = url => {
+    const modal = document.getElementById("modal");
+    const showModal = (url) => {
       currentGifUrl = url;
-      document.getElementById("modal").style.display = "flex";
+      modal.showModal();
     };
     const hideModal = () => {
-      document.getElementById("modal").style.display = "none";
+      modal.close();
       currentGifUrl = null;
     };
-    const copyGIF = async url => {
+    modal.addEventListener("close", () => {
+      currentGifUrl = null;
+    });
+    const copyGIF = async (url) => {
       try {
         await navigator.clipboard.writeText(url);
         showNotification("لینک کپی شد!");
@@ -153,7 +148,7 @@
         showNotification("کپی نشد!");
       }
     };
-    const downloadGIF = url => {
+    const downloadGIF = (url) => {
       const link = document.createElement("a");
       link.href = url;
       link.download = url.split("/").pop();
@@ -192,7 +187,6 @@
         showNotification("خطا در بارگذاری گیف‌ها");
       }
     };
-    document.getElementById("closeModal").onclick = hideModal;
     document.getElementById("copyBtn").onclick = () => {
       if (currentGifUrl) copyGIF(currentGifUrl);
       hideModal();
