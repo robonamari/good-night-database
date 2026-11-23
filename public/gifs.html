@@ -71,7 +71,6 @@
       max-width: 320px;
       text-align: center;
       color: #e0e0ff;
-      font-family: Shabnam;
       direction: rtl
     }
 
@@ -83,15 +82,16 @@
       margin-bottom: 20px
     }
 
-    #modal button {
+    #modal button,
+    #modal a {
       margin: 0 10px;
       padding: 10px 20px;
       border: none;
       border-radius: 10px;
       cursor: pointer;
       font-weight: bold;
-      font-family: Shabnam;
-      font-size: 1rem
+      font-size: 1rem;
+      text-decoration: none;
     }
 
     #downloadBtn {
@@ -121,41 +121,26 @@
   </div>
   <dialog id="modal">
     <p>چه کاری می‌خواهید انجام دهید؟</p>
-    <button id="downloadBtn">دانلود</button>
-    <button id="copyBtn">کپی لینک</button>
+    <a id="downloadBtn" download>دانلود</a>
+    <button id="copyBtn" onclick="copyGIF()">کپی لینک</button>
     <br>
-    <button id="closeModal" onclick="document.getElementById('modal').close()">انصراف</button>
+    <button id="closeModal" onclick="modal.close()">انصراف</button>
   </dialog>
   <script>
-    let currentGifUrl = null;
     const modal = document.getElementById("modal");
     const showModal = (url) => {
-      currentGifUrl = url;
+      modal.dataset.gifUrl = url;
+      document.getElementById("downloadBtn").href = url;
       modal.showModal();
     };
-    const hideModal = () => {
+    const copyGIF = async () => {
       modal.close();
-      currentGifUrl = null;
-    };
-    modal.addEventListener("close", () => {
-      currentGifUrl = null;
-    });
-    const copyGIF = async (url) => {
       try {
-        await navigator.clipboard.writeText(url);
+        await navigator.clipboard.writeText(modal.dataset.gifUrl);
         showNotification("لینک کپی شد!");
       } catch {
         showNotification("کپی نشد!");
       }
-    };
-    const downloadGIF = (url) => {
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = url.split("/").pop();
-      document.body.append(link);
-      link.click();
-      link.remove();
-      showNotification("دانلود آغاز شد!");
     };
     const loadGIFs = async () => {
       try {
@@ -169,7 +154,7 @@
           const img = document.createElement("img");
           card.className = "gif-card";
           img.src = url;
-          img.alt = "GIF";
+          img.alt = "";
           if (index === 0) {
             img.loading = "eager";
             img.decoding = "async";
@@ -186,14 +171,6 @@
         console.error(error);
         showNotification("خطا در بارگذاری گیف‌ها");
       }
-    };
-    document.getElementById("copyBtn").onclick = () => {
-      if (currentGifUrl) copyGIF(currentGifUrl);
-      hideModal();
-    };
-    document.getElementById("downloadBtn").onclick = () => {
-      if (currentGifUrl) downloadGIF(currentGifUrl);
-      hideModal();
     };
     loadGIFs();
   </script>
