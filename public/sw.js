@@ -1,44 +1,34 @@
-const APP_SHELL_CACHE = "app-shell-v0.1.0";
-const ASSETS_CACHE = "assets-v0.1.0";
-
-self.addEventListener("fetch", (event) => {
-  event.respondWith(
-    caches.match(event.request).then(async (cached) => {
-      if (cached) {
-        return cached;
-      }
-      const response = await fetch(event.request);
-      if (new URL(event.request.url).pathname.endsWith(".gif") && response.ok) {
-        const cache = await caches.open(ASSETS_CACHE);
-        await cache.put(event.request, response.clone());
-      }
-      return response;
-    }),
-  );
-});
+const APP_SHELL_CACHE = "app-shell-v0.1.1";
+const APP_SHELL_ASSETS = [
+  "/",
+  "gifs",
+  "favicon.ico",
+  "texts",
+  "assets/css/common.css",
+  "assets/js/notification.js",
+];
 
 self.addEventListener("install", (event) => {
-  let platformAssets = [];
   if (/Android/i.test(navigator.userAgent)) {
-    platformAssets = [
+    APP_SHELL_ASSETS.push(
       ...[48, 72, 96, 144, 192, 512].map(
-        (size) => `assets/android/android-launchericon-${size}-${size}.png`,
+        (size) => `/assets/android/android-launchericon-${size}-${size}.png`,
       ),
-      "assets/android/home.png",
-    ];
+      "/assets/android/home.png",
+    );
   } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-    platformAssets = [
+    APP_SHELL_ASSETS.push(
       ...[
         16, 20, 29, 32, 40, 50, 57, 58, 60, 64, 72, 76, 80, 87, 100, 114, 120,
         128, 144, 152, 167, 180, 192, 256, 512, 1024,
-      ].map((size) => `assets/ios/${size}.png`),
-    ];
+      ].map((size) => `/assets/ios/${size}.png`),
+    );
   } else if (/Windows/i.test(navigator.userAgent)) {
     const scales = ["100", "125", "150", "200", "400"];
     const targetSizes = [
       16, 20, 24, 30, 32, 36, 40, 44, 48, 60, 64, 72, 80, 96, 256,
     ];
-    platformAssets = [
+    APP_SHELL_ASSETS.push(
       "/assets/windows11/home.png",
       ...[
         "LargeTile",
@@ -60,74 +50,70 @@ self.addEventListener("install", (event) => {
       ...targetSizes.map(
         (size) => `/assets/windows11/Square44x44Logo.targetsize-${size}.png`,
       ),
-    ];
+    );
   }
   event.waitUntil(
-    caches.open(APP_SHELL_CACHE).then((cache) => {
-      return cache.addAll([
-        ...platformAssets,
-        "/",
-        "gifs",
-        "texts",
-        "favicon.ico",
-        "assets/css/common.css",
-        "assets/js/notification.js",
-      ]);
-    }),
+    (async () => {
+      const cacheNames = await caches.keys();
+      const oldCaches = await Promise.all(
+        cacheNames
+          .filter(
+            (name) => name.startsWith("app-shell-") && name !== APP_SHELL_CACHE,
+          )
+          .map((name) => caches.open(name)),
+      );
+      const cache = await caches.open(APP_SHELL_CACHE);
+      await Promise.all(
+        [...APP_SHELL_ASSETS].map(async (url) => {
+          let cachedResponse;
+          for (const oldCache of oldCaches) {
+            cachedResponse = await oldCache.match(url);
+            if (cachedResponse) break;
+          }
+          const headers = new Headers();
+          const etag = cachedResponse?.headers.get("ETag");
+          if (etag) {
+            headers.set("If-None-Match", etag);
+          }
+          const response = await fetch(url, {
+            headers,
+            cache: "no-store",
+          });
+          if (response.status === 304 && cachedResponse) {
+            await cache.put(url, cachedResponse);
+          } else if (response.ok) {
+            await cache.put(url, response);
+          } else {
+            throw new Error(`Failed to fetch ${url}: ${response.status}`);
+          }
+        }),
+      );
+    })(),
   );
-  self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then(async (cacheNames) => {
-      const prefixes = ["app-shell-", "assets-"];
-      const groups = prefixes.map((prefix) =>
-        cacheNames.filter((name) => name.startsWith(prefix)),
-      );
+    (async () => {
+      const cacheNames = await caches.keys();
       await Promise.all(
         cacheNames
-          .filter((name) => !prefixes.some((prefix) => name.startsWith(prefix)))
+          .filter((name) => name !== APP_SHELL_CACHE)
           .map((name) => caches.delete(name)),
       );
-      await Promise.all(
-        groups.map(async (group, index) => {
-          const current = [APP_SHELL_CACHE, ASSETS_CACHE][index];
-          const currentCache = await caches.open(current);
-          await Promise.all(
-            group
-              .filter((name) => name !== current)
-              .map(async (name) => {
-                const previousCache = await caches.open(name);
-                await Promise.all(
-                  (await previousCache.keys()).map(async (request) => {
-                    const cached = await previousCache.match(request);
-                    const etag = cached?.headers.get("ETag");
-                    if (!etag) return;
-                    try {
-                      const response = await fetch(
-                        new Request(request, {
-                          headers: {
-                            "If-None-Match": etag,
-                          },
-                          cache: "no-cache",
-                        }),
-                      );
-                      if (response.status === 304) {
-                        await currentCache.put(request, cached);
-                      } else if (response.status === 200) {
-                        await currentCache.put(request, response);
-                      }
-                    } catch {
-                      return;
-                    }
-                  }),
-                );
-                await caches.delete(name);
-              }),
-          );
-        }),
-      );
-    }),
+      await self.clients.claim();
+    })(),
   );
+});
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(async () => {
+    const cache = await caches.open(APP_SHELL_CACHE);
+    const cachedResponse = await cache.match(event.request);
+    if (cachedResponse !== undefined) {
+      return cachedResponse;
+    } else {
+      return fetch(event.request);
+    }
+  });
 });
