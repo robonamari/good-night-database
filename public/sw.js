@@ -107,7 +107,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  event.respondWith(async () => {
+  event.respondWith((async () => {
     const cache = await caches.open(APP_SHELL_CACHE);
     const cachedResponse = await cache.match(event.request);
     if (cachedResponse !== undefined) {
@@ -115,5 +115,5 @@ self.addEventListener("fetch", (event) => {
     } else {
       return fetch(event.request);
     }
-  });
+  })());
 });
